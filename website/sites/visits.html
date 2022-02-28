@@ -123,12 +123,93 @@
 
 					<div class="row">
 						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
-								</div>
+							<div class="card">	
 								<div class="card-body">
 									<!-- CONTENT GOES HERE -->
+									<div class="table-responsive">
+                                        <table id="example" class="table align-items-center mb-0">
+                                          <thead>
+                                            <tr>
+                                              <th class="text-uppercase text-secondary opacity-7">Datum - Uhrzeit</th>
+                                              <th class="text-uppercase text-secondary opacity-7">Name</th>
+                                              <th class="text-uppercase text-secondary opacity-7">Vorname</th>
+                                              <th class="text-uppercase text-secondary opacity-7">Info</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                <p class="font-weight-bold">27.02.2022</p>
+                                              </td>
+                                              <td>
+                                                <p class="font-weight-bold">Liras</p>
+                                              </td>
+                                              <td>
+                                                <p class="font-weight-bold">Alex</p>
+                                              </td>
+                                              <td>
+                                                <h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
+                                              </td>
+                                            </tr>
+                                            <tr>
+												<td>
+												  <p class="font-weight-bold">27.03.2022</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Payne</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Connor</p>
+												</td>
+												<td>
+													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
+												</td>
+											  </tr>
+											  <tr>
+												<td>
+												  <p class="font-weight-bold">07.02.2022</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Rampling</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Maria</p>
+												</td>
+												<td>
+													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
+												</td>
+											  </tr>
+											  <tr>
+												<td>
+												  <p class="font-weight-bold">04.05.2022</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Burgess</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Donna</p>
+												</td>
+												<td>
+													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
+												</td>
+											  </tr>
+											  <tr>
+												<td>
+												  <p class="font-weight-bold">06.08.2022</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Hemsworth</p>
+												</td>
+												<td>
+												  <p class="font-weight-bold">Liam</p>
+												</td>
+												<td>
+													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
+												</td>
+											  </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
 								</div>
 							</div>
 						</div>
@@ -153,7 +234,13 @@
 
 	<script src="../assets/js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
 
 </body>
 
