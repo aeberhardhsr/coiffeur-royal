@@ -1,0 +1,209 @@
+// Function for Modal on Create Customer Button
+$(document).ready(function () {
+    $('.createcustomerbtn').on('click', function() {
+         
+        $('#createCustomerModal').modal('show');
+
+    });
+});
+
+// Function for Modal on Edit Customer Button
+$(document).ready(function () {
+    $('.editcustomerbtn').on('click', function() {
+         
+        $('#editCustomerModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#editCustomerModal_id').val(data[0]);
+            $('#editCustomerModal_name').val(data[1]);
+            $('#editCustomerModal_vorname').val(data[2]);
+            $('#editCustomerModal_wohnort').val(data[3]);
+            $('#editCustomerModal_plz').val(data[4]);
+            $('#editCustomerModal_street').val(data[5]);
+    });
+});
+
+// Function for Modal on Delete Customer Button
+$(document).ready(function () {
+    $('.deletecustomerbtn').on('click', function() {
+         
+        $('#deleteCustomerModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#deleteCustomerModal_id').val(data[0]);
+            $('#deleteCustomerModal_name').val(data[1]);
+            $('#deleteCustomerModal_vorname').val(data[2]);
+            $('#deleteCustomerModal_wohnort').val(data[3]);
+            $('#deleteCustomerModal_plz').val(data[4]);
+            $('#deleteCustomerModal_street').val(data[5]);
+    });
+});
+
+// Function for Modal on Create Product Button
+$(document).ready(function () {
+    $('.createproductbtn').on('click', function() {
+         
+        $('#createProductModal').modal('show');
+
+    });
+});
+
+// Function for Modal on Edit Product Button
+$(document).ready(function () {
+    $('.editproductbtn').on('click', function() {
+         
+        $('#editProductModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#editProductModal_id').val(data[0]);
+            $('#editProductModal_name').val(data[1]);
+            $('#editProductModal_purchaseprice').val(data[2]);
+            $('#editProductModal_pricefactor').val(data[3]);
+    });
+});
+
+// Function for Modal on Delete Product Button
+$(document).ready(function () {
+    $('.deleteproductbtn').on('click', function() {
+         
+        $('#deleteProductModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#deleteProductModal_id').val(data[0]);
+            $('#deleteProductModal_name').val(data[1]);
+            $('#deleteProductModal_purchaseprice').val(data[2]);
+            $('#deleteProductModal_pricefactor').val(data[3]);
+    });
+});
+
+// Function for Modal on Create Service Group Button
+$(document).ready(function () {
+    $('.createservicegroupbtn').on('click', function() {
+         
+        $('#createServiceGroupModal').modal('show');
+
+    });
+});
+
+// Function for Modal on Edit Service Group Button
+$(document).ready(function () {
+    $('.editservicegroupbtn').on('click', function() {
+         
+        $('#editServiceGroupModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#editServiceGroupModal_id').val(data[0]);
+            $('#editServiceGroupModal_name').val(data[1]);
+    });
+});
+
+// Function for Modal on Delete Service Group Button
+$(document).ready(function () {
+    $('.deleteservicegroupbtn').on('click', function() {
+         
+        $('#deleteServiceGroupModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#deleteServiceGroupModal_id').val(data[0]);
+            $('#deleteServiceGroupModal_name').val(data[1]);
+    });
+});
+
+// Function for Modal on Create Service Button
+$(document).ready(function () {
+    $('.createservicebtn').on('click', function() {
+         
+        $('#createServiceModal').modal('show');
+
+    });
+});
+
+// Function for Modal on Edit Service Button
+$(document).ready(function () {
+    $('.editservicebtn').on('click', function() {
+         
+        $('#editServiceModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#editServiceModal_id').val(data[0]);
+            $('#editServiceModal_name').val(data[1]);
+            $('#editServiceModal_DLGroup').val(data[2]);
+            $('#editServiceModal_duration').val(data[3]);
+    });
+});
+
+// Function for Modal on Delete Service Button
+$(document).ready(function () {
+    $('.deleteservicebtn').on('click', function() {
+         
+        $('#deleteServiceModal').modal('show');
+
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#deleteServiceModal_id').val(data[0]);
+            $('#deleteServiceModal_name').val(data[1]);
+    });
+});
