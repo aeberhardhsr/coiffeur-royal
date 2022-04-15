@@ -334,7 +334,7 @@
 															echo "<td>" . $row['product_amount'] . "</td>";
 															echo "<td>" . $row['product_purchase_price'] . "</td>";
 															echo "<td>" . $row['product_price_factor'] . "</td>";
-															echo "<td>" . number_format($row['product_purchase_price'] * $row['product_price_factor'],2,'.','') . "</td>"; //multiplication for sales price
+															echo "<td>" . $row['product_sales_price'] . "</td>"; //multiplication for sales price
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editproductbtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deleteproductbtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
