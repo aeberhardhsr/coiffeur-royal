@@ -92,6 +92,24 @@
                                 <input type="number" name="createServiceModal_duration" class="form-control" id="createServiceModal_duration">
                             </div>
                         </div>
+						<div class="form-group row mb-3">
+                            <label for="createServiceModal_factor" class="col-sm-4 col-form-label">Faktor</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createServiceModal_factor" class="form-control" id="createServiceModal_factor">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="createServiceModal_consumption" class="col-sm-4 col-form-label">Verbrauch (dl)</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createServiceModal_consumption" class="form-control" id="createServiceModal_consumption">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="createServiceModal_price_kg_liter" class="col-sm-4 col-form-label">Preis pro kg/Liter</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createServiceModal_price_kg_liter" class="form-control" id="createServiceModal_price_kg_liter">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
@@ -153,6 +171,24 @@
                                 <input type="number" name="editServiceModal_duration" class="form-control" id="editServiceModal_duration">
                             </div>
                         </div>
+						<div class="form-group row mb-3">
+                            <label for="editServiceModal_factor" class="col-sm-4 col-form-label">Faktor</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editServiceModal_factor" class="form-control" id="editServiceModal_factor">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="editServiceModal_consumption" class="col-sm-4 col-form-label">Verbrauch (dl)</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editServiceModal_consumption" class="form-control" id="editServiceModal_consumption">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="editServiceModal_price_kg_liter" class="col-sm-4 col-form-label">Preis pro kg/Liter</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editServiceModal_price_kg_liter" class="form-control" id="editServiceModal_price_kg_liter">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
@@ -182,7 +218,7 @@
                         <div class="form-group row mb-3">
                             <label for="deleteServiceModal_name" class="col-sm-4 col-form-label">Name</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteServiceModal_name" class="form-control" id="deleteServiceModal_name">
+                                <input type="text" name="deleteServiceModal_name" class="form-control" id="deleteServiceModal_name" readonly>
                             </div>
                         </div>
                     </div>
@@ -290,13 +326,11 @@
 								?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="logout.php">Log out</a>
+								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
 						</li>
 					</ul>
@@ -312,7 +346,6 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
 								</div>
 								<div class="card-body">
 									<!-- CONTENT GOES HERE -->
@@ -324,6 +357,9 @@
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Name</th>
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">DL Gruppe</th>
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Dauer</th>
+											  <th style="display: none;" class="text-uppercase text-secondary  font-weight-bolder opacity-7">Faktor</th>
+											  <th style="display: none;" class="text-uppercase text-secondary  font-weight-bolder opacity-7">Verbrauch</th>
+											  <th style="display: none;" class="text-uppercase text-secondary  font-weight-bolder opacity-7">Preis pro Kg/l</th>
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Verkaufspreis</th>
                                               <th class="text-secondary opacity-7">Edit</th>
                                             </tr>
@@ -332,7 +368,10 @@
 											<?php
 												include 'db.php';
 												$sql = "SELECT * FROM services";
+												$sql_sales_price = "SELECT * FROM cost_calculation";
 												$result = mysqli_query($db_conn, $sql);
+												$result_sales_price = mysqli_query($db_conn, $sql_sales_price);
+												$row_calc_price = mysqli_fetch_assoc($result_sales_price);
 												if (mysqli_num_rows($result) > 0)
 												{
 													while ($row = mysqli_fetch_assoc($result))
@@ -342,7 +381,10 @@
 															echo "<td>" . $row['services_name'] . "</td>";
 															echo "<td>" . $row['services_service_group'] . "</td>";
 															echo "<td>" . $row['services_duration'] . "</td>";
-															echo "<td>2.33</td>";
+															echo "<td style='display: none;'>" . $row['services_factor'] . "</td>";
+															echo "<td style='display: none;'>" . $row['services_consumption'] . "</td>";
+															echo "<td style='display: none;'>" . $row['services_price_kg_liter'] . "</td>";
+															echo "<td>" . number_format((($row['services_duration'] / 60 * $row_calc_price['cost_calculation_hour_rate_calculated']) + (($row['services_price_kg_liter'] / 10) * $row['services_consumption'])) * $row['services_factor'],2,'.',"'") . "</td>";
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editservicebtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deleteservicebtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
@@ -357,7 +399,7 @@
 											?>
                                           </tbody>
                                         </table>
-                                      </div>
+									</div>
                                       <button class="btn btn-secondary mt-5 createservicebtn">Dienstleistung hinzufügen</button>
 								</div>
 							</div>

@@ -30,6 +30,8 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
+
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../assets/img/icons/icon-48x48.png" />
 
@@ -134,13 +136,11 @@
 								?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
 						</li>
 					</ul>
@@ -156,193 +156,175 @@
 						<div class="col-12">
 							<div class="card">	
 								<div class="card-body">
-									<!-- CONTENT GOES HERE -->
+
+									<!-- Modal for add visit -->
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Besuch hinzufügen</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<form action="visits_add.php" method="POST">
+													<div class="modal-body">
+														<div class="form-group row mb-3">
+															<label for="createVisitModal_name" class="col-sm-3 col-form-label">Kunde</label>
+															<div class="col-sm-9">
+															<select name="createVisitModal_name" id="createVisitModal_name" class="form-select">
+																	<option selected disabled>-- Auswählen --</option>
+																	<?php
+																	include 'db.php';
+																	$sql_customer = "SELECT * FROM customer";
+																	$result_customer = mysqli_query($db_conn, $sql_customer);
+																	if (mysqli_num_rows($result_customer) > 0) 
+																	{
+																		while($row_customer = mysqli_fetch_assoc($result_customer))
+																		{
+																			echo '<option>' . $row_customer['customer_name'] . " " . $row_customer['customer_vorname'] . '</option>';
+																		}
+																		echo "</select>";
+																	} else {
+																		echo "0 results";
+																	}
+																	mysqli_close($db_conn);
+																	?>
+																
+															</div>
+														</div>
+														
+														<div class="accordion accordion-flush" id="accordionFlushExample">
+															<?php
+																include 'db.php';
+																$sql_dl_groups = "SELECT * FROM service_groups";
+																$result_dl_groups = mysqli_query($db_conn, $sql_dl_groups);
+																
+																if (mysqli_num_rows($result_dl_groups) > 0)
+																{
+																	$row_counter = 1;
+																	while($row = mysqli_fetch_assoc($result_dl_groups))
+																	{
+																		echo "<div class='accordion-item'>";
+																		echo "<h2 class='accordion-header' id='flush-heading".$row_counter."'>";
+																		echo "<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse".$row_counter."' aria-expanded='false' aria-controls='flush-collapse".$row_counter."'>".$row['service_group_name']."</button>";
+																		echo "</h2>";
+																		echo "<div id='flush-collapse".$row_counter."'' class='accordion-collapse collapse' aria-labelledby='flush-heading".$row_counter."'data-bs-parent='#accordionFlushExample'>";
+																		echo "<div class='accordion-body'>";
+																			$sql_ass_prod = "SELECT * FROM services WHERE services_service_group LIKE '$row[service_group_name]'";
+																			$result_ass_prod = mysqli_query($db_conn, $sql_ass_prod);
+
+																			if (mysqli_num_rows($result_ass_prod) > 0)
+																			{
+																				while($row_ass_prod = mysqli_fetch_assoc($result_ass_prod))
+																				{
+																					echo "<label class='form-check'>";
+																					echo	"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='".$row_ass_prod['services_name']."'>";
+																					echo	"<span class='form-check-label'>";
+																					echo	$row_ass_prod['services_name'];
+																					echo	"</span>";
+																					echo "</label>";
+																				}
+																			}
+																		echo "</div>";
+																		echo "</div>";
+																		echo "</div>";
+																		++$row_counter;
+																	}
+																}
+															?>
+															
+															
+														</div>
+													</div>
+												
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+														<button type="submit" name="createvisitbtn" class="btn btn-success">Speichern</button>
+													</div>
+												</form>
+											</div>
+											</div>
+										</div>
+										<!-- END MODAL -->
+
+										<!-- Modal for add visit note -->
+										<div class="modal fade" id="createVisitNoteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Notiz hinzufügen</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<form action="visits_notes_add.php" method="POST">
+														<div class="modal-body">
+															<div class="form-group row mb-3">
+																<label for="createVisitNoteModal_id" class="col-sm-4 col-form-label">ID</label>
+																<div class="col-sm-8">
+																	<input type="text" name="createVisitNoteModal_id" class="form-control" id="createVisitNoteModal_id" readonly>
+																</div>
+															</div>
+															<div class="form-group row mb-3">
+																<label for="createVisitNoteModal_name" class="col-sm-4 col-form-label">Notizen</label>
+																<div class="col-sm-8">
+																	<textarea class="form-control" name="createVisitNoteModal_name" id="createVisitNoteModal_name" rows="4" placeholder="Notiz hinzufügen"></textarea>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+															<button type="submit" name="createvisitnotebtn" class="btn btn-success">Hinzufügen</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+
+
+									<!-- Main CONTENT GOES HERE -->
 									<div class="table-responsive">
                                         <table id="example" class="table align-items-center mb-0">
                                           <thead>
                                             <tr>
-                                              <th class="text-uppercase text-secondary opacity-7">Datum - Uhrzeit</th>
-                                              <th class="text-uppercase text-secondary opacity-7">Name</th>
-                                              <th class="text-uppercase text-secondary opacity-7">Vorname</th>
-                                              <th class="text-uppercase text-secondary opacity-7">Info</th>
+                                              <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">ID</th>
+                                              <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Datum</th>
+                                              <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Kunde</th>
+											  <th style="display: none;" class="text-uppercase text-secondary  font-weight-bolder opacity-7">Notizen</th>
+                                              <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Info</th>
                                             </tr>
                                           </thead>
                                           <tbody>
-                                            <tr>
-                                              <td>
-                                                <p class="font-weight-bold">27.02.2022</p>
-                                              </td>
-                                              <td>
-                                                <p class="font-weight-bold">Liras</p>
-                                              </td>
-                                              <td>
-                                                <p class="font-weight-bold">Alex</p>
-                                              </td>
-                                              <td>
-                                                <h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
-                                              </td>
-                                            </tr>
-                                            <tr>
-												<td>
-												  <p class="font-weight-bold">27.03.2022</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Payne</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Connor</p>
-												</td>
-												<td>
-													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
-												</td>
-											  </tr>
-											  <tr>
-												<td>
-												  <p class="font-weight-bold">07.02.2022</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Rampling</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Maria</p>
-												</td>
-												<td>
-													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
-												</td>
-											  </tr>
-											  <tr>
-												<td>
-												  <p class="font-weight-bold">04.05.2022</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Burgess</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Donna</p>
-												</td>
-												<td>
-													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
-												</td>
-											  </tr>
-											  <tr>
-												<td>
-												  <p class="font-weight-bold">06.08.2022</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Hemsworth</p>
-												</td>
-												<td>
-												  <p class="font-weight-bold">Liam</p>
-												</td>
-												<td>
-													<h6 class="font-weight-bold"><i class="align-middle" data-feather="message-square"></i> | <i class="align-middle" data-feather="book-open"></i></h6>
-												</td>
-											  </tr>
+											<?php
+												include 'db.php';
+												$sql = "SELECT * FROM visits";
+												$result = mysqli_query($db_conn, $sql);
+												if (mysqli_num_rows($result) > 0)
+												{
+													while ($row = mysqli_fetch_assoc($result))
+													{
+														echo "<tr>";
+															echo "<td>" . $row['visits_id'] . "</td>";
+															echo "<td>" . $row['visits_datetime'] . "</td>";
+															echo "<td>" . $row['visits_customer'] . "</td>";
+															echo "<td style='display: none;'>" . $row['visits_notes'] . "</td>";
+															echo "<td class='text-right'>";
+																echo "<button type='button' class='btn notevisitebtn'><i class='align-middle' data-feather='message-square' style='width: 25px; height: 25px;'></i></button>";
+																echo "<button type='button' class='btn deleteservicebtn'><i class='align-middle' data-feather='book-open' style='width: 25px; height: 25px;'></i></button>";
+															echo "</td>";
+													}
+												}
+												else 
+												{
+													echo "0 Results found";
+												}
+												mysqli_close($db_conn);
+											?>
                                           </tbody>
                                         </table>
-										<button type="button" class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Besuch hinzufügen</button>
+									</div>
+									
+									<button type="button" class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Besuch hinzufügen</button>
+									
+									  
 
-										<!-- Modal -->
-										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<div class="accordion accordion-flush" id="accordionFlushExample">
-														<div class="accordion-item">
-														  <h2 class="accordion-header" id="flush-headingOne">
-															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-															  Auftragspauschale
-															</button>
-														  </h2>
-														  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-															<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-														  </div>
-														</div>
-														<div class="accordion-item">
-														  <h2 class="accordion-header" id="flush-headingTwo">
-															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-															  Damen Kurzhaar
-															</button>
-														  </h2>
-														  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-															<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-														  </div>
-														</div>
-														<div class="accordion-item">
-														  <h2 class="accordion-header" id="flush-headingThree">
-															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-															  Damen Langhaar
-															</button>
-														  </h2>
-														  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-															<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-														  </div>
-														</div>
-														<div class="accordion-item">
-														  <h2 class="accordion-header" id="flush-headingFour">
-															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-															  Gesichtsbehandlung
-															</button>
-														  </h2>
-														  <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-															<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-														  </div>
-														</div>
-														<div class="accordion-item">
-															<h2 class="accordion-header" id="flush-headingFive">
-															  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-																Nägel- und Handpflege
-															  </button>
-															</h2>
-															<div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-															  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-															</div>
-														</div>
-														<div class="accordion-item">
-															<h2 class="accordion-header" id="flush-headingSix">
-															  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-																Herren
-															  </button>
-															</h2>
-															<div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-															  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-															</div>
-														</div>
-														<div class="accordion-item">
-															<h2 class="accordion-header" id="flush-headingSeven">
-															  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-																Studierende / Lernende
-															  </button>
-															</h2>
-															<div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
-															  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-															</div>
-														</div>
-														<div class="accordion-item">
-															<h2 class="accordion-header" id="flush-headingEight">
-															  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
-																Kinder
-															  </button>
-															</h2>
-															<div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
-															  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-															</div>
-														</div>
-													  </div>
-												</div>
-												<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
-												</div>
-											</div>
-											</div>
-										</div>
-
-                                      </div>
 								</div>
 							</div>
 						</div>
@@ -365,6 +347,7 @@
 		</div>
 	</div>
 
+
 	<script src="../assets/js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
@@ -374,6 +357,9 @@
             $('#example').DataTable();
         } );
     </script>
+	<script src="../assets/js/modals.js"></script>
+
+	
 
 </body>
 
