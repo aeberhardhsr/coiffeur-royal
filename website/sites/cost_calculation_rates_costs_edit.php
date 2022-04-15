@@ -8,6 +8,7 @@ include 'db.php';
     $additionalratescost_work_hours_full    = $_POST['editRatesCostCalculation_work_hours_full'];
     $additionalratescost_hour_rate_half     = $_POST['editRatesCostCalculation_hour_rate_half'];
     $additionalratescost_work_hours_half    = $_POST['editRatesCostCalculation_work_hours_half'];
+    $additionalratescost_hour_rate_calc     = $_POST['editRatesCostCalculation_hour_rate_calc'];
     
 
 
