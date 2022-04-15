@@ -124,7 +124,7 @@
                         <div class="form-group row mb-3">
                             <label for="deleteServiceGroupModal_name" class="col-sm-4 col-form-label">Name</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteServiceGroupModal_name" class="form-control" id="deleteServiceGroupModal_name">
+                                <input type="text" name="deleteServiceGroupModal_name" class="form-control" id="deleteServiceGroupModal_name" readonly>
                             </div>
                         </div>
                     </div>
@@ -231,13 +231,11 @@
 								?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
 						</li>
 					</ul>
@@ -253,7 +251,6 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
 								</div>
 								<div class="card-body">
 									<!-- CONTENT GOES HERE -->

@@ -169,31 +169,31 @@
                         <div class="form-group row mb-3">
                             <label for="deleteCustomerModal_name" class="col-sm-4 col-form-label">Name</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_name" class="form-control" id="deleteCustomerModal_name">
+                                <input type="text" name="deleteCustomerModal_name" class="form-control" id="deleteCustomerModal_name" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
                             <label for="deleteCustomerModal_vorname" class="col-sm-4 col-form-label">Vorname</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_vorname" class="form-control" id="deleteCustomerModal_vorname">
+                                <input type="text" name="deleteCustomerModal_vorname" class="form-control" id="deleteCustomerModal_vorname" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
                             <label for="deleteCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_wohnort" class="form-control" id="deleteCustomerModal_wohnort">
+                                <input type="text" name="deleteCustomerModal_wohnort" class="form-control" id="deleteCustomerModal_wohnort" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
                             <label for="deleteCustomerModal_plz" class="col-sm-4 col-form-label">PLZ</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_plz" class="form-control" id="deleteCustomerModal_plz">
+                                <input type="text" name="deleteCustomerModal_plz" class="form-control" id="deleteCustomerModal_plz" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
                             <label for="deleteCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_street" class="form-control" id="deleteCustomerModal_street">
+                                <input type="text" name="deleteCustomerModal_street" class="form-control" id="deleteCustomerModal_street" readonly>
                             </div>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand text-center" href="../dashboard.php">
+				<a class="sidebar-brand text-center" href="dashboard.php">
 					<span class="align-middle"><img src="../assets/img/logo/coiffeur_royal.png" width="50%"></span>
 				</a>
 
@@ -221,7 +221,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="../dashboard.php">
+						<a class="sidebar-link" href="dashboard.php">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 						</a>
 					</li>
@@ -298,13 +298,11 @@
 								?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="logout.php">Log out</a>
+								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
 						</li>
 					</ul>

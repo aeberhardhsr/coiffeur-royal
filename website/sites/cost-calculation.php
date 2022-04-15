@@ -134,13 +134,11 @@
 								?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="logout.php">Log out</a>
+								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
 						</li>
 					</ul>
@@ -176,7 +174,7 @@
                                         <div class="row mb-3">
                                           <label for="editAdditionalCostCalculation_room" class="col-sm-2 col-form-label">Raumkosten p. M.</label>
                                           <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="editAdditionalCostCalculation_room" id="editAdditionalCostCalculation_room" value="<?php echo $row['cost_calculation_space']?>">
+                                            <input type="text" class="form-control" name="editAdditionalCostCalculation_room" id="editAdditionalCostCalculation_room" value="<?php echo number_format($row['cost_calculation_space'],2,'.',"'")?>">
                                           </div>
                                         </div>
                                         <div class="row mb-3">
@@ -233,10 +231,11 @@
 												$sql_nk_sum = "SELECT SUM(cost_calculation_space + cost_calculation_energy + cost_calculation_water + cost_calculation_waste + cost_calculation_office + cost_calculation_office_material + cost_calculation_drinks + cost_calculation_towel + cost_calculation_accountant) FROM cost_calculation";
 												$result_nk_sum = mysqli_query($db_conn, $sql_nk_sum);
 												$res_nk_sum = mysqli_fetch_array($result_nk_sum);
+												$res_nk_sum_val = intval($res_nk_sum[0]);
 											?>
                                             <label for="inputPassword3" class="col-sm-2 col-form-label">Nebenkosten p. M.</label>
                                             <div class="col-sm-10">
-                                              <input type="number" class="form-control" id="inputPassword3" disabled value="<?php echo $res_nk_sum[0]?>">
+                                              <input type="text" class="form-control" id="inputPassword3" disabled value="<?php echo number_format($res_nk_sum_val,2,'.',"'")?>">
                                             </div>
                                           </div>
                                           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -270,27 +269,27 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_gross_wage_full" class="form-label">Bruttolohn Pensum 100%</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_gross_wage_full" id="editRatesCostCalculation_gross_wage_full" disabled value="<?php echo $row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_full" id="editRatesCostCalculation_gross_wage_full" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_hour_rate_full" class="form-label">Stundensatz</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_hour_rate_full" id="editRatesCostCalculation_hour_rate_full" value="<?php echo $row_rates['cost_calculation_hour_rate_full']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_hour_rate_full" id="editRatesCostCalculation_hour_rate_full" value="<?php echo $row_rates['cost_calculation_hour_rate_full']?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_work_hours_full" class="form-label">Arbeitsstunden p. M.</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_work_hours_full" id="editRatesCostCalculation_work_hours_full" value="<?php echo $row_rates['cost_calculation_work_hours_full']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_full" id="editRatesCostCalculation_work_hours_full" value="<?php echo $row_rates['cost_calculation_work_hours_full']?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_gross_wage_half" class="form-label">Bruttolohn Pensum 50%</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_gross_wage_half" id="editRatesCostCalculation_gross_wage_half" disabled value="<?php echo $row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_half" id="editRatesCostCalculation_gross_wage_half" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_hour_rate_half" class="form-label">Stundensatz</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_hour_rate_half" id="editRatesCostCalculation_hour_rate_half" value="<?php echo $row_rates['cost_calculation_hour_rate_half']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_hour_rate_half" id="editRatesCostCalculation_hour_rate_half" value="<?php echo $row_rates['cost_calculation_hour_rate_half']?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_work_hours_half" class="form-label">Arbeitsstunden p. M.</label>
-                                            <input type="number" class="form-control" name="editRatesCostCalculation_work_hours_half" id="editRatesCostCalculation_work_hours_half" value="<?php echo $row_rates['cost_calculation_work_hours_half']?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_half" id="editRatesCostCalculation_work_hours_half" value="<?php echo $row_rates['cost_calculation_work_hours_half']?>">
                                         </div>
                                         <div class="col-12">
                                           <label for="editRatesCostCalculation_fte" class="form-label">Kosten 2 Coiffeuse p. M.</label>
