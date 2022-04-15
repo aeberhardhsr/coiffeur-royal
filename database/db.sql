@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS products (
     product_name VARCHAR(50) NOT NULL,
     product_amount VARCHAR(30),
     product_purchase_price DECIMAL(6,2),
-    product_price_factor DECIMAL(6,2)
+    product_price_factor DECIMAL(6,2),
+    product_sales_price DECIMAL(10,2) GENERATED ALWAYS AS (product_purchase_price*product_price_factor) STORED
     );
 
 CREATE TABLE IF NOT EXISTS service_groups (
