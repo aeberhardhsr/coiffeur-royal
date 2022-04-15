@@ -185,6 +185,9 @@ $(document).ready(function () {
             $('#editServiceModal_name').val(data[1]);
             $('#editServiceModal_DLGroup').val(data[2]);
             $('#editServiceModal_duration').val(data[3]);
+            $('#editServiceModal_factor').val(data[4]);
+            $('#editServiceModal_consumption').val(data[5]);
+            $('#editServiceModal_price_kg_liter').val(data[6]);
     });
 });
 
@@ -205,5 +208,25 @@ $(document).ready(function () {
 
             $('#deleteServiceModal_id').val(data[0]);
             $('#deleteServiceModal_name').val(data[1]);
+    });
+});
+
+// Function for Modal on Create Visit Note Button
+$(document).ready(function () {
+    $('.notevisitebtn').on('click', function() {
+         
+        $('#createVisitNoteModal').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#createVisitNoteModal_id').val(data[0]);
+            $('#createVisitNoteModal_name').val(data[3]);
+
     });
 });
