@@ -3,12 +3,10 @@
     if(isset($_SESSION['User']))
     {
         //echo "Welcome " . $_SESSION['User'];
-		// convert user mailadress to only first and lastname
+		// convert user login to only first and lastname
         $mailid = $_SESSION['User'];
-        // remove the @ sign
-        $username = strstr($mailid, '@', true);
         // split the name.lastname
-        $parts = explode(".", $username);
+        $parts = explode(".", $mailid);
         // write the first letter uppercase
         $lastname = ucfirst(array_pop($parts));
         $firstname = ucfirst(implode(".", $parts));
@@ -122,12 +120,12 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<?php
-								if($mailid == "werder.steffanie@bluewin.ch")
+								if($mailid == "werder.stefanie")
 								{
 									echo "<img src='../assets/img/avatars/steffi.jpg' class='avatar img-fluid rounded me-1' alt='Steffanie Werder'/> <span class='text-dark'>" .$lastname . " " . $firstname;
 								}
 								
-								elseif($mailid == "werder.romy@bluewin.ch")
+								elseif($mailid == "weibel.romy")
 								{
 									echo "<img src='../assets/img/avatars/romy.jpg' class='avatar img-fluid rounded me-1' alt='Romy Werder'/> <span class='text-dark'>" . $lastname . " " . $firstname;
 								}
@@ -268,7 +266,7 @@
                                             <input type="text" class="form-control" name="editRatesCostCalculation_socialcharges" id="editRatesCostCalculation_socialcharges" value="<?php echo $row_rates['cost_calculation_social_charges']?>">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="editRatesCostCalculation_gross_wage_full" class="form-label">Bruttolohn Pensum 100%</label>
+                                            <label for="editRatesCostCalculation_gross_wage_full" class="form-label">Bruttolohn Person 1</label>
                                             <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_full" id="editRatesCostCalculation_gross_wage_full" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">
@@ -280,7 +278,7 @@
                                             <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_full" id="editRatesCostCalculation_work_hours_full" value="<?php echo $row_rates['cost_calculation_work_hours_full']?>">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="editRatesCostCalculation_gross_wage_half" class="form-label">Bruttolohn Pensum 50%</label>
+                                            <label for="editRatesCostCalculation_gross_wage_half" class="form-label">Bruttolohn Person 2</label>
                                             <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_half" id="editRatesCostCalculation_gross_wage_half" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">

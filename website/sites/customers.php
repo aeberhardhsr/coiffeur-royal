@@ -3,12 +3,10 @@
     if(isset($_SESSION['User']))
     {
         //echo "Welcome " . $_SESSION['User'];
-		// convert user mailadress to only first and lastname
+		// convert user login to only first and lastname
         $mailid = $_SESSION['User'];
-        // remove the @ sign
-        $username = strstr($mailid, '@', true);
         // split the name.lastname
-        $parts = explode(".", $username);
+        $parts = explode(".", $mailid);
         // write the first letter uppercase
         $lastname = ucfirst(array_pop($parts));
         $firstname = ucfirst(implode(".", $parts));
@@ -67,9 +65,21 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="createCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
+                            <label for="createCustomerModal_phone" class="col-sm-4 col-form-label">Telefon</label>
                             <div class="col-sm-8">
-                                <input type="text" name="createCustomerModal_wohnort" class="form-control" id="createCustomerModal_wohnort">
+                                <input type="text" name="createCustomerModal_phone" class="form-control" id="createCustomerModal_phone">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="createCustomerModal_mail" class="col-sm-4 col-form-label">E-Mail</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createCustomerModal_mail" class="form-control" id="createCustomerModal_mail">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="createCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createCustomerModal_street" class="form-control" id="createCustomerModal_street">
                             </div>
                         </div>
 						<div class="form-group row mb-3">
@@ -79,9 +89,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="createCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <label for="createCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
                             <div class="col-sm-8">
-                                <input type="text" name="createCustomerModal_street" class="form-control" id="createCustomerModal_street">
+                                <input type="text" name="createCustomerModal_wohnort" class="form-control" id="createCustomerModal_wohnort">
                             </div>
                         </div>
                     </div>
@@ -123,9 +133,21 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="editCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
+                            <label for="editCustomerModal_phone" class="col-sm-4 col-form-label">Telefon</label>
                             <div class="col-sm-8">
-                                <input type="text" name="editCustomerModal_wohnort" class="form-control" id="editCustomerModal_wohnort">
+                                <input type="text" name="editCustomerModal_phone" class="form-control" id="editCustomerModal_phone">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="editCustomerModal_mail" class="col-sm-4 col-form-label">E-Mail</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editCustomerModal_mail" class="form-control" id="editCustomerModal_mail">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="editCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editCustomerModal_street" class="form-control" id="editCustomerModal_street">
                             </div>
                         </div>
 						<div class="form-group row mb-3">
@@ -135,9 +157,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="editCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <label for="editCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
                             <div class="col-sm-8">
-                                <input type="text" name="editCustomerModal_street" class="form-control" id="editCustomerModal_street">
+                                <input type="text" name="editCustomerModal_wohnort" class="form-control" id="editCustomerModal_wohnort">
                             </div>
                         </div>
                     </div>
@@ -179,9 +201,21 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="deleteCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
+                            <label for="deleteCustomerModal_phone" class="col-sm-4 col-form-label">Telefon</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_wohnort" class="form-control" id="deleteCustomerModal_wohnort" readonly>
+                                <input type="text" name="deleteCustomerModal_phone" class="form-control" id="deleteCustomerModal_phone" readonly>
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="deleteCustomerModal_mail" class="col-sm-4 col-form-label">E-Mail</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="deleteCustomerModal_mail" class="form-control" id="deleteCustomerModal_mail" readonly>
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="deleteCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="deleteCustomerModal_street" class="form-control" id="deleteCustomerModal_street" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
@@ -191,9 +225,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="deleteCustomerModal_street" class="col-sm-4 col-form-label">Strasse</label>
+                            <label for="deleteCustomerModal_wohnort" class="col-sm-4 col-form-label">Wohnort</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteCustomerModal_street" class="form-control" id="deleteCustomerModal_street" readonly>
+                                <input type="text" name="deleteCustomerModal_wohnort" class="form-control" id="deleteCustomerModal_wohnort" readonly>
                             </div>
                         </div>
                     </div>
@@ -286,12 +320,12 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<?php
-								if($mailid == "werder.steffanie@bluewin.ch")
+								if($mailid == "werder.stefanie")
 								{
 									echo "<img src='../assets/img/avatars/steffi.jpg' class='avatar img-fluid rounded me-1' alt='Steffanie Werder'/> <span class='text-dark'>" .$lastname . " " . $firstname;
 								}
 								
-								elseif($mailid == "werder.romy@bluewin.ch")
+								elseif($mailid == "weibel.romy")
 								{
 									echo "<img src='../assets/img/avatars/romy.jpg' class='avatar img-fluid rounded me-1' alt='Romy Werder'/> <span class='text-dark'>" . $lastname . " " . $firstname;
 								}
@@ -329,9 +363,11 @@
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">ID</th>
                                               <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Name</th>
                                               <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Vorname</th>
-                                              <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Wohnort</th>
-											  <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Postleitzahl</th>
-											  <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Strasse</th>
+											  <th style="display: none;" class="text-uppercase text-secondary font-weight-bolder opacity-7">Strasse</th>
+											  <th style="display: none;" class="text-uppercase text-secondary font-weight-bolder opacity-7">Postleitzahl</th>
+											  <th style="display: none;" class="text-uppercase text-secondary font-weight-bolder opacity-7">Wohnort</th>
+											  <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Telefon</th>
+											  <th class="text-uppercase text-secondary font-weight-bolder opacity-7">E-Mail</th>
                                               <th class="text-secondary opacity-7">Edit</th>
                                             </tr>
                                           </thead>
@@ -348,9 +384,11 @@
 															echo "<td>" . $row['customer_id'] . "</td>";
 															echo "<td>" . $row['customer_name'] . "</td>";
 															echo "<td>" . $row['customer_vorname'] . "</td>";
-															echo "<td>" . $row['customer_city'] . "</td>";
-															echo "<td>" . $row['customer_zipcode'] . "</td>";
-															echo "<td>" . $row['customer_street'] . "</td>";
+															echo "<td style='display: none;'>" . $row['customer_street'] . "</td>";
+															echo "<td style='display: none;'>" . $row['customer_zipcode'] . "</td>";
+															echo "<td style='display: none;'>" . $row['customer_city'] . "</td>";
+															echo "<td>" . $row['customer_phone'] . "</td>";
+															echo "<td>" . $row['customer_mail'] . "</td>";
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editcustomerbtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deletecustomerbtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
@@ -395,7 +433,9 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+				"lengthMenu": [[-1, 10, 25, 50, 100],["All", 10, 25, 50, 100]]
+			});
         } );
     </script>
 	<script src="../assets/js/modals.js"></script>

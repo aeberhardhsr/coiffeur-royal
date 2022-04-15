@@ -3,12 +3,10 @@
     if(isset($_SESSION['User']))
     {
         //echo "Welcome " . $_SESSION['User'];
-		// convert user mailadress to only first and lastname
+		// convert user login to only first and lastname
         $mailid = $_SESSION['User'];
-        // remove the @ sign
-        $username = strstr($mailid, '@', true);
         // split the name.lastname
-        $parts = explode(".", $username);
+        $parts = explode(".", $mailid);
         // write the first letter uppercase
         $lastname = ucfirst(array_pop($parts));
         $firstname = ucfirst(implode(".", $parts));
@@ -124,12 +122,12 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<?php
-								if($mailid == "werder.steffanie@bluewin.ch")
+								if($mailid == "werder.stefanie")
 								{
 									echo "<img src='../assets/img/avatars/steffi.jpg' class='avatar img-fluid rounded me-1' alt='Steffanie Werder'/> <span class='text-dark'>" .$lastname . " " . $firstname;
 								}
 								
-								elseif($mailid == "werder.romy@bluewin.ch")
+								elseif($mailid == "weibel.romy")
 								{
 									echo "<img src='../assets/img/avatars/romy.jpg' class='avatar img-fluid rounded me-1' alt='Romy Werder'/> <span class='text-dark'>" . $lastname . " " . $firstname;
 								}
@@ -170,7 +168,7 @@
 														<div class="form-group row mb-3">
 															<label for="createVisitModal_name" class="col-sm-3 col-form-label">Kunde</label>
 															<div class="col-sm-9">
-															<select name="createVisitModal_name" id="createVisitModal_name" class="form-select">
+																<select name="createVisitModal_name" id="createVisitModal_name" class="form-select">
 																	<option selected disabled>-- Auswählen --</option>
 																	<?php
 																	include 'db.php';
@@ -188,7 +186,12 @@
 																	}
 																	mysqli_close($db_conn);
 																	?>
-																
+															</div>
+														</div>
+														<div class="form-group row mb-3">
+															<label for="createVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
+															<div class="col-sm-9">
+																<input type="text" name="createVisitModal_date" class="form-control" id="createVisitModal_date">
 															</div>
 														</div>
 														
@@ -229,6 +232,9 @@
 																		echo "</div>";
 																		++$row_counter;
 																	}
+																}
+																else {
+																	echo "Noch keine Dienstleistungsgruppen erfasst";
 																}
 															?>
 															
@@ -278,6 +284,67 @@
 											</div>
 										</div>
 
+										<!-- Modal for delete visit -->
+										<div class="modal fade" id="deleteVisitNoteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Besuch löschen</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<form action="visits_delete.php" method="POST">
+														<div class="modal-body">
+															<div class="form-group row mb-3">
+																<label for="deleteVisitNoteModal_id" class="col-sm-3 col-form-label">ID</label>
+																<div class="col-sm-9">
+																	<input type="text" name="deleteVisitNoteModal_id" class="form-control" id="deleteVisitNoteModal_id" readonly>
+																</div>
+															</div>
+															<div class="form-group row mb-3">
+																<label for="deleteVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
+																<div class="col-sm-9">
+																	<input type="text" name="deleteVisitModal_date" class="form-control" id="deleteVisitModal_date" readonly>
+																</div>
+															</div>
+															<div class="form-group row mb-3">
+																<label for="deleteVisitModal_name" class="col-sm-3 col-form-label">Kunde</label>
+																<div class="col-sm-9">
+																	<select name="deleteVisitModal_name" id="deleteVisitModal_name" class="form-select" disabled>
+																		<option selected disabled>-- Auswählen --</option>
+																		<?php
+																		include 'db.php';
+																		$sql_customer = "SELECT * FROM customer";
+																		$result_customer = mysqli_query($db_conn, $sql_customer);
+																		if (mysqli_num_rows($result_customer) > 0) 
+																		{
+																			while($row_customer = mysqli_fetch_assoc($result_customer))
+																			{
+																				echo '<option>' . $row_customer['customer_name'] . " " . $row_customer['customer_vorname'] . '</option>';
+																			}
+																			echo "</select>";
+																		} else {
+																			echo "0 results";
+																		}
+																		mysqli_close($db_conn);
+																		?>
+																</div>
+															</div>
+															<div class="form-group row mb-3">
+																<label for="deleteVisitNoteModal_note" class="col-sm-3 col-form-label">Notizen</label>
+																<div class="col-sm-9">
+																	<textarea class="form-control" name="deleteVisitNoteModal_note" id="deleteVisitNoteModal_note" rows="4" placeholder="Notiz hinzufügen" readonly></textarea>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+															<button type="submit" name="deletevisitbtn" class="btn btn-danger">Löschen</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+
 
 									<!-- Main CONTENT GOES HERE -->
 									<div class="table-responsive">
@@ -306,8 +373,10 @@
 															echo "<td>" . $row['visits_customer'] . "</td>";
 															echo "<td style='display: none;'>" . $row['visits_notes'] . "</td>";
 															echo "<td class='text-right'>";
+																echo "<button type='button' class='btn mr-1 editvisitbtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn notevisitebtn'><i class='align-middle' data-feather='message-square' style='width: 25px; height: 25px;'></i></button>";
-																echo "<button type='button' class='btn deleteservicebtn'><i class='align-middle' data-feather='book-open' style='width: 25px; height: 25px;'></i></button>";
+																echo "<button type='button' class='btn showofferbtn'><i class='align-middle' data-feather='book-open' style='width: 25px; height: 25px;'></i></button>";
+																echo "<button type='button' class='btn mr-1 deletevisitbtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
 															echo "</td>";
 													}
 												}

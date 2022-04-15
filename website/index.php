@@ -52,7 +52,7 @@
 									<form action="sites/login_process.php" method="post">
 										<div class="mb-3">
 											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="Uemail" placeholder="E-Mail Adresse eingeben" />
+											<input class="form-control form-control-lg" type="text" name="Uemail" placeholder="E-Mail Adresse eingeben" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>

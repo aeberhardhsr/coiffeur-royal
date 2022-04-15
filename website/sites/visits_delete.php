@@ -1,13 +1,12 @@
 <?php
 include 'db.php';
 
-if(isset($_POST['createvisitbtn']))
+if(isset($_POST['deletevisitbtn']))
 {
-    $visit_name      = $_POST['createVisitModal_name'];
-    //$visit_date      = date("d.m.Y", strtotime("today"));
-    $visit_date     = $_POST['createVisitModal_date'];
+    $visit_id      = $_POST['deleteVisitNoteModal_id'];
+    $visit_date    = $_POST['deleteVisitModal_date'];
     
-    $query = "INSERT INTO visits (visits_customer, visits_datetime) VALUES ('$visit_name', '$visit_date')";
+    $query = "DELETE FROM visits WHERE visits_id='$visit_id' AND visits_datetime='$visit_date'";
     $query_run = mysqli_query($db_conn, $query);
 
     if($query_run)

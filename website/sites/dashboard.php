@@ -3,12 +3,10 @@
     if(isset($_SESSION['User']))
     {
         //echo "Welcome " . $_SESSION['User'];
-		// convert user mailadress to only first and lastname
+		// convert user login to only first and lastname
         $mailid = $_SESSION['User'];
-        // remove the @ sign
-        $username = strstr($mailid, '@', true);
         // split the name.lastname
-        $parts = explode(".", $username);
+        $parts = explode(".", $mailid);
         // write the first letter uppercase
         $lastname = ucfirst(array_pop($parts));
         $firstname = ucfirst(implode(".", $parts));
@@ -45,7 +43,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand text-center" href="dasboard.php">
+				<a class="sidebar-brand text-center" href="dashboard.php">
 					<span class="align-middle"><img src="../assets/img/logo/coiffeur_royal.png" width="50%"></span>
 				</a>
 
@@ -55,7 +53,7 @@
 					</li>
 
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="dasboard.php">
+						<a class="sidebar-link" href="dashboard.php">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 						</a>
 					</li>
@@ -120,12 +118,12 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<?php
-								if($mailid == "werder.steffanie@bluewin.ch")
+								if($mailid == "werder.stefanie")
 								{
 									echo "<img src='../assets/img/avatars/steffi.jpg' class='avatar img-fluid rounded me-1' alt='Steffanie Werder'/> <span class='text-dark'>" .$lastname . " " . $firstname;
 								}
 								
-								elseif($mailid == "werder.romy@bluewin.ch")
+								elseif($mailid == "weibel.romy")
 								{
 									echo "<img src='../assets/img/avatars/romy.jpg' class='avatar img-fluid rounded me-1' alt='Romy Werder'/> <span class='text-dark'>" . $lastname . " " . $firstname;
 								}

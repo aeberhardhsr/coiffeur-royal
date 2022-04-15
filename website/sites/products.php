@@ -3,12 +3,10 @@
     if(isset($_SESSION['User']))
     {
         //echo "Welcome " . $_SESSION['User'];
-		// convert user mailadress to only first and lastname
+		// convert user login to only first and lastname
         $mailid = $_SESSION['User'];
-        // remove the @ sign
-        $username = strstr($mailid, '@', true);
         // split the name.lastname
-        $parts = explode(".", $username);
+        $parts = explode(".", $mailid);
         // write the first letter uppercase
         $lastname = ucfirst(array_pop($parts));
         $firstname = ucfirst(implode(".", $parts));
@@ -64,6 +62,12 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
+                            <label for="createProductModal_amount" class="col-sm-4 col-form-label">Menge</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="createProductModal_amount" class="form-control" id="createProductModal_amount">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
                             <label for="createProductModal_purchaseprice" class="col-sm-4 col-form-label">Einkaufspreis</label>
                             <div class="col-sm-8">
                                 <input type="text" name="createProductModal_purchaseprice" class="form-control" id="createProductModal_purchaseprice">
@@ -108,6 +112,12 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
+                            <label for="editProductModal_amount" class="col-sm-4 col-form-label">Menge</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="editProductModal_amount" class="form-control" id="editProductModal_amount">
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
                             <label for="editProductModal_purchaseprice" class="col-sm-4 col-form-label">Einkaufspreis</label>
                             <div class="col-sm-8">
                                 <input type="text" name="editProductModal_purchaseprice" class="form-control" id="editProductModal_purchaseprice">
@@ -149,6 +159,12 @@
                             <label for="deleteProductModal_name" class="col-sm-4 col-form-label">Produktname</label>
                             <div class="col-sm-8">
                                 <input type="text" name="deleteProductModal_name" class="form-control" id="deleteProductModal_name" readonly>
+                            </div>
+                        </div>
+						<div class="form-group row mb-3">
+                            <label for="deleteProductModal_amount" class="col-sm-4 col-form-label">Menge</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="deleteProductModal_amount" class="form-control" id="deleteProductModal_amount" readonly>
                             </div>
                         </div>
 						<div class="form-group row mb-3">
@@ -255,12 +271,12 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<?php
-								if($mailid == "werder.steffanie@bluewin.ch")
+								if($mailid == "werder.stefanie")
 								{
 									echo "<img src='../assets/img/avatars/steffi.jpg' class='avatar img-fluid rounded me-1' alt='Steffanie Werder'/> <span class='text-dark'>" .$lastname . " " . $firstname;
 								}
 								
-								elseif($mailid == "werder.romy@bluewin.ch")
+								elseif($mailid == "weibel.romy")
 								{
 									echo "<img src='../assets/img/avatars/romy.jpg' class='avatar img-fluid rounded me-1' alt='Romy Werder'/> <span class='text-dark'>" . $lastname . " " . $firstname;
 								}
@@ -296,6 +312,7 @@
                                             <tr>
                                               <th class="text-uppercase text-secondary opacity-7">ID</th>
                                               <th class="text-uppercase text-secondary opacity-7">Name</th>
+											  <th class="text-uppercase text-secondary opacity-7">Menge</th>
                                               <th class="text-uppercase text-secondary opacity-7">Einkaufspreis</th>
                                               <th class="text-uppercase text-secondary opacity-7">Faktor</th>
                                               <th class="text-uppercase text-secondary opacity-7">Verkaufspreis</th>
@@ -314,6 +331,7 @@
 														echo "<tr>";
 															echo "<td>" . $row['product_id'] . "</td>";
 															echo "<td>" . $row['product_name'] . "</td>";
+															echo "<td>" . $row['product_amount'] . "</td>";
 															echo "<td>" . $row['product_purchase_price'] . "</td>";
 															echo "<td>" . $row['product_price_factor'] . "</td>";
 															echo "<td>" . number_format($row['product_purchase_price'] * $row['product_price_factor'],2,'.','') . "</td>"; //multiplication for sales price
@@ -361,7 +379,9 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+				"lengthMenu": [[-1, 10, 25, 50, 100],["All", 10, 25, 50, 100]]
+			});
         } );
     </script>
 	<script src="../assets/js/modals.js"></script>

@@ -8,9 +8,11 @@ if(isset($_POST['createcustomerbtn']))
     $customer_location  = $_POST['createCustomerModal_wohnort'];
     $customer_zipcode   = $_POST['createCustomerModal_plz'];
     $customer_street    = $_POST['createCustomerModal_street'];
+    $customer_phone     = $_POST['createCustomerModal_phone'];
+    $customer_mail      = $_POST['createCustomerModal_mail'];
 
 
-    $query = "INSERT INTO customer (customer_name, customer_vorname, customer_city, customer_zipcode, customer_street) VALUES ('$customer_name', '$customer_vorname', '$customer_location', '$customer_zipcode', '$customer_street')";
+    $query = "INSERT INTO customer (customer_name, customer_vorname, customer_city, customer_zipcode, customer_street, customer_phone, customer_mail) VALUES ('$customer_name', '$customer_vorname', '$customer_location', '$customer_zipcode', '$customer_street', '$customer_phone', '$customer_mail')";
     $query_run = mysqli_query($db_conn, $query);
 
     if($query_run)

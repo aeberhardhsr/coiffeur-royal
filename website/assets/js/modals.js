@@ -25,9 +25,11 @@ $(document).ready(function () {
             $('#editCustomerModal_id').val(data[0]);
             $('#editCustomerModal_name').val(data[1]);
             $('#editCustomerModal_vorname').val(data[2]);
-            $('#editCustomerModal_wohnort').val(data[3]);
+            $('#editCustomerModal_street').val(data[3]);
             $('#editCustomerModal_plz').val(data[4]);
-            $('#editCustomerModal_street').val(data[5]);
+            $('#editCustomerModal_wohnort').val(data[5]);
+            $('#editCustomerModal_phone').val(data[6]);
+            $('#editCustomerModal_mail').val(data[7]);
     });
 });
 
@@ -49,9 +51,11 @@ $(document).ready(function () {
             $('#deleteCustomerModal_id').val(data[0]);
             $('#deleteCustomerModal_name').val(data[1]);
             $('#deleteCustomerModal_vorname').val(data[2]);
-            $('#deleteCustomerModal_wohnort').val(data[3]);
+            $('#deleteCustomerModal_street').val(data[3]);
             $('#deleteCustomerModal_plz').val(data[4]);
-            $('#deleteCustomerModal_street').val(data[5]);
+            $('#deleteCustomerModal_wohnort').val(data[5]);
+            $('#deleteCustomerModal_phone').val(data[6]);
+            $('#deleteCustomerModal_mail').val(data[7]);
     });
 });
 
@@ -81,8 +85,9 @@ $(document).ready(function () {
 
             $('#editProductModal_id').val(data[0]);
             $('#editProductModal_name').val(data[1]);
-            $('#editProductModal_purchaseprice').val(data[2]);
-            $('#editProductModal_pricefactor').val(data[3]);
+            $('#editProductModal_amount').val(data[2]);
+            $('#editProductModal_purchaseprice').val(data[3]);
+            $('#editProductModal_pricefactor').val(data[4]);
     });
 });
 
@@ -103,8 +108,9 @@ $(document).ready(function () {
 
             $('#deleteProductModal_id').val(data[0]);
             $('#deleteProductModal_name').val(data[1]);
-            $('#deleteProductModal_purchaseprice').val(data[2]);
-            $('#deleteProductModal_pricefactor').val(data[3]);
+            $('#deleteProductModal_amount').val(data[2]);
+            $('#deleteProductModal_purchaseprice').val(data[3]);
+            $('#deleteProductModal_pricefactor').val(data[4]);
     });
 });
 
@@ -227,6 +233,28 @@ $(document).ready(function () {
 
             $('#createVisitNoteModal_id').val(data[0]);
             $('#createVisitNoteModal_name').val(data[3]);
+
+    });
+});
+
+// Function for Modal on Delete Visit Button
+$(document).ready(function () {
+    $('.deletevisitbtn').on('click', function() {
+         
+        $('#deleteVisitNoteModal').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#deleteVisitNoteModal_id').val(data[0]);
+            $('#deleteVisitModal_date').val(data[1]);
+            $('#deleteVisitModal_name').val(data[2]);
+            $('#deleteVisitNoteModal_note').val(data[3]);
 
     });
 });
