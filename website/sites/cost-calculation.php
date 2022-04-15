@@ -152,7 +152,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Nebenkosten</h5>
+									<h5 class="card-title mb-0">Nebenkosten monatlich</h5>
 								</div>
 								<div class="card-body">
 									<?php
@@ -170,7 +170,7 @@
                                           </div>
                                         </div>
                                         <div class="row mb-3">
-                                          <label for="editAdditionalCostCalculation_room" class="col-sm-2 col-form-label">Raumkosten p. M.</label>
+                                          <label for="editAdditionalCostCalculation_room" class="col-sm-2 col-form-label">Raumkosten</label>
                                           <div class="col-sm-10">
                                             <input type="text" class="form-control" name="editAdditionalCostCalculation_room" id="editAdditionalCostCalculation_room" value="<?php echo number_format($row['cost_calculation_space'],2,'.',"'")?>">
                                           </div>
@@ -231,7 +231,7 @@
 												$res_nk_sum = mysqli_fetch_array($result_nk_sum);
 												$res_nk_sum_val = intval($res_nk_sum[0]);
 											?>
-                                            <label for="inputPassword3" class="col-sm-2 col-form-label">Nebenkosten p. M.</label>
+                                            <label for="inputPassword3" class="col-sm-2 col-form-label">Total</label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control" id="inputPassword3" disabled value="<?php echo number_format($res_nk_sum_val,2,'.',"'")?>">
                                             </div>
