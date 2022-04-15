@@ -8,7 +8,7 @@ USE coiffeur_royal;
 /* TABLES */
 CREATE TABLE IF NOT EXISTS visits (
     visits_id INT AUTO_INCREMENT PRIMARY KEY,
-    visits_datetime DATE,
+    visits_datetime VARCHAR(30),
     visits_customer VARCHAR(50) NOT NULL,
     visits_notes VARCHAR(1000)
     );
@@ -19,12 +19,15 @@ CREATE TABLE IF NOT EXISTS customer (
     customer_vorname VARCHAR(30) NOT NULL,
     customer_city VARCHAR(30),
     customer_zipcode INT(4),
-    customer_street VARCHAR(50)
+    customer_street VARCHAR(50),
+    customer_phone VARCHAR(40),
+    customer_mail VARCHAR(50)
     );
 
 CREATE TABLE IF NOT EXISTS products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(50) NOT NULL,
+    product_amount VARCHAR(30),
     product_purchase_price DECIMAL(6,2),
     product_price_factor DECIMAL(6,2)
     );
@@ -75,12 +78,12 @@ CREATE TABLE IF NOT EXISTS staff_user (
     staff_user_id INT AUTO_INCREMENT PRIMARY KEY,
     staff_user_name VARCHAR(30),
     staff_user_vorname VARCHAR(30),
-    staff_user_email VARCHAR(30),
+    staff_user_email VARCHAR(50),
     staff_user_password VARCHAR(255)
     );
 
 /* ### INSERT STATEMENTS ### */
-INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Werder", "Steffi", "werder.steffanie@bluewin.ch", "c78298b714888b43d2989507a02ae0344190de56");
-INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Werder", "Romy", "werder.romy@bluewin.ch", "c78298b714888b43d2989507a02ae0344190de56");
+INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Werder", "Stefi", "werder.stefanie", "c78298b714888b43d2989507a02ae0344190de56");
+INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Weibel", "Romy", "weibel.romy", "c78298b714888b43d2989507a02ae0344190de56");
 
 INSERT INTO cost_calculation (cost_calculation_space, cost_calculation_hour_rate_calculated) VALUES (1000, 51.36);
