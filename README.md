@@ -15,3 +15,4 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [] berechneter Stundensatz in DB speichern
 - [] seiten aufräumen und überflüssige löschen
 - [] berechnete Datenbankwerte als GENERATED ALWAYS AS (...) STORED; einpflegen
+- [] Add Buttons neben Titel platzieren mit neuem Icon als Button
