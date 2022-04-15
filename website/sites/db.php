@@ -1,8 +1,8 @@
 <?php
 //$servername =   "192.168.178.144";
 $servername =   "localhost";
-$db_user =      "root";
-$db_password =  "";
+$db_user =      "newuser";
+$db_password =  "password";
 $db_name =      "coiffeur_royal";
 $port =         "3306";
 
