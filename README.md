@@ -12,7 +12,12 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [] MwSt. 
 - [x] Login User: stefanie.werder, romy.weibel
 - [x] Datatables alle Datensätze zeigen als Standard
-- [] berechneter Stundensatz in DB speichern
-- [] seiten aufräumen und überflüssige löschen
-- [] berechnete Datenbankwerte als GENERATED ALWAYS AS (...) STORED; einpflegen
+- [x] berechneter Stundensatz in DB speichern
+- [x] berechneter DL Preis in DB speichern als Stored Wert
+- [x] seiten aufräumen und überflüssige löschen
+- [x] berechnete Datenbankwerte als GENERATED ALWAYS AS (...) STORED; einpflegen
 - [] Add Buttons neben Titel platzieren mit neuem Icon als Button
+- [] Modal Dienstleistun hinzufügen, Felder erscheinen nicht sauber
+- [] Modal für Besuch hinzufügen gestalten
+- [] PDF erstellen aus "Besuch hinzufügen"
+- [] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
