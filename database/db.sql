@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS services (
     services_duration INT(3),
     services_factor DECIMAL(10,2),
     services_consumption DECIMAL(10,2),
-    services_price_kg_liter DECIMAL(10,2)
+    services_price_kg_liter DECIMAL(10,2),
+    services_sales_price DECIMAL(10,2)
     );
 
 CREATE TABLE IF NOT EXISTS cost_calculation (
@@ -59,14 +60,16 @@ CREATE TABLE IF NOT EXISTS cost_calculation (
     cost_calculation_drinks DECIMAL(10,2),
     cost_calculation_towel DECIMAL(10,2),
     cost_calculation_accountant DECIMAL(10,2),
+    cost_calculation_additional_cost DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_space + cost_calculation_energy + cost_calculation_water + cost_calculation_waste + cost_calculation_office + cost_calculation_office_material + cost_calculation_drinks + cost_calculation_towel + cost_calculation_accountant) STORED,
     cost_calculation_social_charges DECIMAL(10,2),
-    cost_calculation_gross_wage_full DECIMAL(10,2),
+    cost_calculation_gross_wage_full DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) STORED,
     cost_calculation_hour_rate_full DECIMAL(10,2),
     cost_calculation_work_hours_full DECIMAL(10,2),
-    cost_calculation_gross_wage_half DECIMAL(10,2),
+    cost_calculation_gross_wage_half DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) STORED,
     cost_calculation_hour_rate_half DECIMAL(10,2),
     cost_calculation_work_hours_half DECIMAL(10,2),
-    cost_calculation_hour_rate_calculated DECIMAL(10,2)
+    cost_calculation_cost_fte DECIMAL(10,2) GENERATED ALWAYS AS ((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + cost_calculation_additional_cost) STORED,
+    cost_calculation_hour_rate_calculated DECIMAL(10,2) GENERATED ALWAYS AS (((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + cost_calculation_additional_cost) / (cost_calculation_work_hours_full + cost_calculation_work_hours_half)) STORED
     );
 
 CREATE TABLE IF NOT EXISTS customer_visit_info (
@@ -87,4 +90,4 @@ CREATE TABLE IF NOT EXISTS staff_user (
 INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Werder", "Stefi", "werder.stefanie", "c78298b714888b43d2989507a02ae0344190de56");
 INSERT INTO staff_user (staff_user_name, staff_user_vorname, staff_user_email, staff_user_password) VALUES ("Weibel", "Romy", "weibel.romy", "c78298b714888b43d2989507a02ae0344190de56");
 
-INSERT INTO cost_calculation (cost_calculation_space, cost_calculation_hour_rate_calculated) VALUES (1000, 51.36);
+INSERT INTO cost_calculation (cost_calculation_space) VALUES (0);
