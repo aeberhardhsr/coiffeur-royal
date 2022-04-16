@@ -224,16 +224,9 @@
                                             </div>
                                           </div>
                                           <div class="row mb-3">
-										  	<?php
-												include 'db.php';
-												$sql_nk_sum = "SELECT SUM(cost_calculation_space + cost_calculation_energy + cost_calculation_water + cost_calculation_waste + cost_calculation_office + cost_calculation_office_material + cost_calculation_drinks + cost_calculation_towel + cost_calculation_accountant) FROM cost_calculation";
-												$result_nk_sum = mysqli_query($db_conn, $sql_nk_sum);
-												$res_nk_sum = mysqli_fetch_array($result_nk_sum);
-												$res_nk_sum_val = intval($res_nk_sum[0]);
-											?>
                                             <label for="inputPassword3" class="col-sm-2 col-form-label">Total</label>
                                             <div class="col-sm-10">
-                                              <input type="text" class="form-control" id="inputPassword3" disabled value="<?php echo number_format($res_nk_sum_val,2,'.',"'")?>">
+                                              <input type="text" class="form-control" id="inputPassword3" disabled value="<?php echo number_format($row['cost_calculation_additional_cost'],2,'.',"'")?>">
                                             </div>
                                           </div>
                                           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -267,7 +260,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_gross_wage_full" class="form-label">Bruttolohn Person 1</label>
-                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_full" id="editRatesCostCalculation_gross_wage_full" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_full" id="editRatesCostCalculation_gross_wage_full" disabled value="<?php echo number_format($row_rates['cost_calculation_gross_wage_full'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_hour_rate_full" class="form-label">Stundensatz</label>
@@ -279,7 +272,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_gross_wage_half" class="form-label">Bruttolohn Person 2</label>
-                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_half" id="editRatesCostCalculation_gross_wage_half" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges'],2,'.',"'")?>">
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_half" id="editRatesCostCalculation_gross_wage_half" disabled value="<?php echo number_format($row_rates['cost_calculation_gross_wage_half'],2,'.',"'")?>">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="editRatesCostCalculation_hour_rate_half" class="form-label">Stundensatz</label>
@@ -291,17 +284,11 @@
                                         </div>
                                         <div class="col-12">
                                           <label for="editRatesCostCalculation_fte" class="form-label">Kosten 2 Coiffeuse p. M.</label>
-										  <?php
-										  	$costs_calculated_fte = ($row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges']) + ($row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges']) + $res_nk_sum[0]
-										  ?>
-                                          <input type="text" class="form-control" name="editRatesCostCalculation_fte" id="editRatesCostCalculation_fte" disabled value="<?php echo number_format($costs_calculated_fte,2,'.',"'") ?>">
+                                          <input type="text" class="form-control" name="editRatesCostCalculation_fte" id="editRatesCostCalculation_fte" disabled value="<?php echo number_format($row_rates['cost_calculation_cost_fte'],2,'.',"'") ?>">
                                         </div>
                                         <div class="col-12 mb-3">
                                           <label for="editRatesCostCalculation_hour_rate_calc" class="form-label">Stundensatz berechnet</label>
-											<?php
-												$calculated_hour_rate = (($row_rates['cost_calculation_hour_rate_full'] * $row_rates['cost_calculation_work_hours_full'] * $row_rates['cost_calculation_social_charges']) + ($row_rates['cost_calculation_hour_rate_half'] * $row_rates['cost_calculation_work_hours_half'] * $row_rates['cost_calculation_social_charges']) + $res_nk_sum[0]) / ($row_rates['cost_calculation_work_hours_full'] + $row_rates['cost_calculation_work_hours_half'])
-											?>
-                                          <input type="text" class="form-control" name="editRatesCostCalculation_hour_rate_calc" id="editRatesCostCalculation_hour_rate_calc" disabled value="<?php echo number_format($calculated_hour_rate,2,'.','')?>">
+                                          <input type="text" class="form-control" name="editRatesCostCalculation_hour_rate_calc" id="editRatesCostCalculation_hour_rate_calc" disabled value="<?php echo number_format($row_rates['cost_calculation_hour_rate_calculated'],2,'.','')?>">
                                         </div>
                                         
                                         <div class="col-12">
