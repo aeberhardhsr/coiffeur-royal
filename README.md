@@ -7,9 +7,9 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] Kundenstammanordnung, Name Vorname Telefonnummer Mail (Strasse PLZ Ort)
 - [x] Mengenfeld bei Produktstammdaten (für 300ml / 500ml)
 - [x] Bezeichnung Kostenberechnung von Pensum 100% auf Person 1 -> Analog 50% auf Person 2
-- [] Suchfeld bei "Besuch hinzufügen" Kunde durchsuchen
+- [ ] Suchfeld bei "Besuch hinzufügen" Kunde durchsuchen
 - [x] Möglichkeiten von Notizen für Farbrezept
-- [] MwSt. 
+- [ ] MwSt. 
 - [x] Login User: stefanie.werder, romy.weibel
 - [x] Datatables alle Datensätze zeigen als Standard
 - [x] berechneter Stundensatz in DB speichern
