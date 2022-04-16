@@ -366,10 +366,7 @@
 											<?php
 												include 'db.php';
 												$sql = "SELECT * FROM services";
-												$sql_sales_price = "SELECT * FROM cost_calculation";
 												$result = mysqli_query($db_conn, $sql);
-												$result_sales_price = mysqli_query($db_conn, $sql_sales_price);
-												$row_calc_price = mysqli_fetch_assoc($result_sales_price);
 												if (mysqli_num_rows($result) > 0)
 												{
 													while ($row = mysqli_fetch_assoc($result))
@@ -382,7 +379,7 @@
 															echo "<td style='display: none;'>" . $row['services_factor'] . "</td>";
 															echo "<td style='display: none;'>" . $row['services_consumption'] . "</td>";
 															echo "<td style='display: none;'>" . $row['services_price_kg_liter'] . "</td>";
-															echo "<td>" . number_format((($row['services_duration'] / 60 * $row_calc_price['cost_calculation_hour_rate_calculated']) + (($row['services_price_kg_liter'] / 10) * $row['services_consumption'])) * $row['services_factor'],2,'.',"'") . "</td>";
+															echo "<td>" . $row['services_sales_price'] . "</td>";
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editservicebtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deleteservicebtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
