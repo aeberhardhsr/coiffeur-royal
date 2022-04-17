@@ -263,70 +263,36 @@
 								<table class="table table-hover my-0">
 									<thead>
 										<tr>
+											<th style="display: none;">ID</th>
 											<th>Name</th>
-											<th class="d-none d-xl-table-cell">Start Date</th>
-											<th class="d-none d-xl-table-cell">End Date</th>
-											<th>Status</th>
-											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-xl-table-cell">Datum</th>
+											<th style="display: none;">Notizen</th>
+											<th class="d-none d-md-table-cell">Betreut von</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Project Apollo</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-										</tr>
-										<tr>
-											<td>Project Fireball</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-danger">Cancelled</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project Hades</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Nitro</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-										</tr>
-										<tr>
-											<td>Project Phoenix</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project X</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Romeo</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Christina Mason</td>
-										</tr>
-										<tr>
-											<td>Project Wombat</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
+										<?php
+											include 'db.php';
+											$sql = "SELECT visits_id, DATE_FORMAT(visits_datetime, '%d.%m.%Y') visits_datetime_formatted, visits_datetime, visits_customer, visits_notes, visits_assignee FROM visits ORDER BY visits_datetime DESC LIMIT 10";
+											$result = mysqli_query($db_conn, $sql);
+											if (mysqli_num_rows($result) > 0)
+											{
+												while ($row = mysqli_fetch_assoc($result))
+												{
+													echo "<tr>";
+														echo "<td style='display: none;'>" . $row['visits_id'] . "</td>";
+														echo "<td>" . $row['visits_customer'] . "</td>";
+														echo "<td>" . $row['visits_datetime_formatted'] . "</td>";
+														echo "<td style='display: none;'>" . $row['visits_notes'] . "</td>";
+														echo "<td>" . $row['visits_assignee'] . "</td>";
+												}
+											}
+											else 
+											{
+												echo "0 Results found";
+											}
+											mysqli_close($db_conn);
+										?>
 									</tbody>
 								</table>
 							</div>
