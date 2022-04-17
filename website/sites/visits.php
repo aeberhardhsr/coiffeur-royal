@@ -148,7 +148,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Besuche</h1>
+					<h1 class="h3 mb-3">Besuche <button type='button' class='btn mr-1 createvisitbtn'><i class='align-middle' data-feather='plus-circle' style='width: 30px; height: 30px;'></i></button></h1>
 
 					<div class="row">
 						<div class="col-12">
@@ -156,7 +156,7 @@
 								<div class="card-body">
 
 									<!-- Modal for add visit -->
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal fade" id="createVisitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -188,10 +188,16 @@
 																	?>
 															</div>
 														</div>
-														<div class="form-group row mb-3">
+														<div style="display: none;" class="form-group row mb-3">
 															<label for="createVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
 															<div class="col-sm-9">
 																<input type="text" name="createVisitModal_date" class="form-control" id="createVisitModal_date">
+															</div>
+														</div>
+														<div style="display: none;" class="form-group row mb-3">
+															<label for="createVisitModal_assignee" class="col-sm-3 col-form-label">Betreuende Coiffeuse</label>
+															<div class="col-sm-9">
+																<input type="text" name="createVisitModal_assignee" class="form-control" id="createVisitModal_assignee" value="<?php echo $lastname . " " . $firstname ?>">
 															</div>
 														</div>
 														
@@ -219,12 +225,21 @@
 																			{
 																				while($row_ass_prod = mysqli_fetch_assoc($result_ass_prod))
 																				{
-																					echo "<label class='form-check'>";
-																					echo	"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='".$row_ass_prod['services_name']."'>";
-																					echo	"<span class='form-check-label'>";
-																					echo	$row_ass_prod['services_name'];
-																					echo	"</span>";
-																					echo "</label>";
+																					echo "<div class='row'>";
+																					echo 	"<div class='col-sm-6'><p class='float-start'>";
+																					echo 		"<label class='form-check'>";
+																					echo			"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='".$row_ass_prod['services_name']."'>";
+																					echo			"<span class='form-check-label'>";
+																					echo			$row_ass_prod['services_name'];
+																					echo			"</span>";
+																					echo			"<span class='float-end'>";
+																					echo			"</span>";
+																					echo 		"</label>";
+																					echo 	"</p></div>";
+																					echo 	"<div class='col-sm-6'><p class='float-end'>";
+																					echo 		$row_ass_prod['services_sales_price'];
+																					echo 	"</p></div>";
+																					echo "</div>";
 																				}
 																			}
 																		echo "</div>";
@@ -244,7 +259,119 @@
 												
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-														<button type="submit" name="createvisitbtn" class="btn btn-success">Speichern</button>
+														<button type="submit" name="createvisitbtn" class="btn btn-success">Hinzufügen</button>
+													</div>
+												</form>
+											</div>
+											</div>
+										</div>
+										<!-- END MODAL -->
+
+										<!-- Modal for edit visit -->
+										<div class="modal fade" id="editVisitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Besuch bearbeiten</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<form action="visits_edit.php" method="POST">
+													<div class="modal-body">
+														<div class="form-group row mb-3">
+																<label for="editVisitModal_id" class="col-sm-3 col-form-label">ID</label>
+																<div class="col-sm-9">
+																	<input type="text" name="editVisitModal_id" class="form-control" id="editVisitModal_id" readonly>
+																</div>
+															</div>
+														<div class="form-group row mb-3">
+															<label for="editVisitModal_name" class="col-sm-3 col-form-label">Kunde</label>
+															<div class="col-sm-9">
+																<select name="editVisitModal_name" id="editVisitModal_name" class="form-select">
+																	<option selected disabled>-- Auswählen --</option>
+																	<?php
+																	include 'db.php';
+																	$sql_customer = "SELECT * FROM customer";
+																	$result_customer = mysqli_query($db_conn, $sql_customer);
+																	if (mysqli_num_rows($result_customer) > 0) 
+																	{
+																		while($row_customer = mysqli_fetch_assoc($result_customer))
+																		{
+																			echo '<option>' . $row_customer['customer_name'] . " " . $row_customer['customer_vorname'] . '</option>';
+																		}
+																		echo "</select>";
+																	} else {
+																		echo "0 results";
+																	}
+																	mysqli_close($db_conn);
+																	?>
+															</div>
+														</div>
+														<div class="form-group row mb-3">
+															<label for="editVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
+															<div class="col-sm-9">
+																<input type="text" name="editVisitModal_date" class="form-control" id="editVisitModal_date">
+															</div>
+														</div>
+														
+														<div class="accordion accordion-flush" id="accordionFlushExample">
+															<?php
+																include 'db.php';
+																$sql_dl_groups = "SELECT * FROM service_groups";
+																$result_dl_groups = mysqli_query($db_conn, $sql_dl_groups);
+																
+																if (mysqli_num_rows($result_dl_groups) > 0)
+																{
+																	$row_counter = 1;
+																	while($row = mysqli_fetch_assoc($result_dl_groups))
+																	{
+																		echo "<div class='accordion-item'>";
+																		echo "<h2 class='accordion-header' id='flush-heading".$row_counter."'>";
+																		echo "<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse".$row_counter."' aria-expanded='false' aria-controls='flush-collapse".$row_counter."'>".$row['service_group_name']."</button>";
+																		echo "</h2>";
+																		echo "<div id='flush-collapse".$row_counter."'' class='accordion-collapse collapse' aria-labelledby='flush-heading".$row_counter."'data-bs-parent='#accordionFlushExample'>";
+																		echo "<div class='accordion-body'>";
+																			$sql_ass_prod = "SELECT * FROM services WHERE services_service_group LIKE '$row[service_group_name]'";
+																			$result_ass_prod = mysqli_query($db_conn, $sql_ass_prod);
+
+																			if (mysqli_num_rows($result_ass_prod) > 0)
+																			{
+																				while($row_ass_prod = mysqli_fetch_assoc($result_ass_prod))
+																				{
+																					echo "<div class='row'>";
+																					echo 	"<div class='col-sm-6'><p class='float-start'>";
+																					echo 		"<label class='form-check'>";
+																					echo			"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='".$row_ass_prod['services_name']."'>";
+																					echo			"<span class='form-check-label'>";
+																					echo			$row_ass_prod['services_name'];
+																					echo			"</span>";
+																					echo			"<span class='float-end'>";
+																					echo			"</span>";
+																					echo 		"</label>";
+																					echo 	"</p></div>";
+																					echo 	"<div class='col-sm-6'><p class='float-end'>";
+																					echo 		$row_ass_prod['services_sales_price'];
+																					echo 	"</p></div>";
+																					echo "</div>";
+																				}
+																			}
+																		echo "</div>";
+																		echo "</div>";
+																		echo "</div>";
+																		++$row_counter;
+																	}
+																}
+																else {
+																	echo "Noch keine Dienstleistungsgruppen erfasst";
+																}
+															?>
+															
+															
+														</div>
+													</div>
+												
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+														<button type="submit" name="editvisitbtn" class="btn btn-success">Speichern</button>
 													</div>
 												</form>
 											</div>
@@ -361,7 +488,7 @@
                                           <tbody>
 											<?php
 												include 'db.php';
-												$sql = "SELECT * FROM visits";
+												$sql = "SELECT visits_id, DATE_FORMAT(visits_datetime, '%d.%m.%Y') visits_datetime_formatted, visits_datetime, visits_customer, visits_notes, visits_assignee FROM visits ORDER BY visits_datetime";
 												$result = mysqli_query($db_conn, $sql);
 												if (mysqli_num_rows($result) > 0)
 												{
@@ -369,7 +496,7 @@
 													{
 														echo "<tr>";
 															echo "<td>" . $row['visits_id'] . "</td>";
-															echo "<td>" . $row['visits_datetime'] . "</td>";
+															echo "<td>" . $row['visits_datetime_formatted'] . "</td>";
 															echo "<td>" . $row['visits_customer'] . "</td>";
 															echo "<td style='display: none;'>" . $row['visits_notes'] . "</td>";
 															echo "<td class='text-right'>";
@@ -388,12 +515,8 @@
 											?>
                                           </tbody>
                                         </table>
-									</div>
-									
-									<button type="button" class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Besuch hinzufügen</button>
-									
+									</div>		
 									  
-
 								</div>
 							</div>
 						</div>
