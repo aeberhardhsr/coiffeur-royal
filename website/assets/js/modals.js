@@ -237,6 +237,37 @@ $(document).ready(function () {
     });
 });
 
+// Function for Modal on Create Visit Button
+$(document).ready(function () {
+    $('.createvisitbtn').on('click', function() {
+         
+        $('#createVisitModal').modal('show');
+
+    });
+});
+
+// Function for Modal on Edit Visit Button
+$(document).ready(function () {
+    $('.editvisitbtn').on('click', function() {
+         
+        $('#editVisitModal').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#editVisitModal_id').val(data[0]);
+            $('#editVisitModal_date').val(data[1]);
+            $('#editVisitModal_name').val(data[2]);
+            //$('#deleteVisitNoteModal_note').val(data[3]);
+
+    });
+});
+
 // Function for Modal on Delete Visit Button
 $(document).ready(function () {
     $('.deletevisitbtn').on('click', function() {
