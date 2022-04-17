@@ -297,7 +297,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Produktübersicht</h1>
+					<h1 class="h3 mb-3">Produktübersicht <button type='button' class='btn mr-1 createproductbtn'><i class='align-middle' data-feather='plus-circle' style='width: 30px; height: 30px;'></i></button></h1>
 
 					<div class="row">
 						<div class="col-12">
@@ -350,7 +350,6 @@
                                           </tbody>
                                         </table>
                                       </div>
-                                      <button class="btn btn-secondary mt-5 createproductbtn">Produkt hinzufügen</button>
 								</div>
 							</div>
 						</div>
