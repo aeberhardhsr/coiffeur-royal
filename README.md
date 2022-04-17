@@ -16,8 +16,8 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] berechneter DL Preis in DB speichern als Stored Wert
 - [x] seiten aufräumen und überflüssige löschen
 - [x] berechnete Datenbankwerte als GENERATED ALWAYS AS (...) STORED; einpflegen
-- [ ] Add Buttons neben Titel platzieren mit neuem Icon als Button
-- [ ] Modal Dienstleistun hinzufügen, Felder erscheinen nicht sauber
+- [x] Add Buttons neben Titel platzieren mit neuem Icon als Button
 - [ ] Modal für Besuch hinzufügen gestalten
 - [ ] PDF erstellen aus "Besuch hinzufügen"
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
+- [ ] Datepicker bei Besuch hinzufügen
