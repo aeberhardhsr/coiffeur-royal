@@ -8,9 +8,10 @@ USE coiffeur_royal;
 /* TABLES */
 CREATE TABLE IF NOT EXISTS visits (
     visits_id INT AUTO_INCREMENT PRIMARY KEY,
-    visits_datetime VARCHAR(30),
+    visits_datetime VARCHAR(30) NOT NULL,
     visits_customer VARCHAR(50) NOT NULL,
-    visits_notes VARCHAR(1000)
+    visits_notes VARCHAR(1000),
+    visits_assignee VARCHAR(50) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS customer (
