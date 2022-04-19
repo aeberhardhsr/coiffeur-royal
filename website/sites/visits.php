@@ -228,7 +228,7 @@
 																					echo "<div class='row'>";
 																					echo 	"<div class='col-sm-6'><p class='float-start'>";
 																					echo 		"<label class='form-check'>";
-																					echo			"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='".$row_ass_prod['services_name']."'>";
+																					echo			"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row['service_group_name']."' value='". $row['service_group_name'] . ";" . $row_ass_prod['services_name'] . ";" . $row_ass_prod['services_sales_price']."'>";
 																					echo			"<span class='form-check-label'>";
 																					echo			$row_ass_prod['services_name'];
 																					echo			"</span>";
