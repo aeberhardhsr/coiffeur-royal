@@ -14,6 +14,15 @@ CREATE TABLE IF NOT EXISTS visits (
     visits_assignee VARCHAR(50) NOT NULL
     );
 
+CREATE TABLE IF NOT EXISTS visits_purchase (
+    visits_purchase_id INT AUTO_INCREMENT PRIMARY KEY,
+    visits_purchase_vid INT,
+    visits_purchase_uid INT,
+    visits_purchase_services_group_name VARCHAR(50),
+    visits_purchase_services_name VARCHAR(50),
+    visits_purchase_services_sales_price DECIMAL(10,2)
+    );
+
 CREATE TABLE IF NOT EXISTS customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(30) NOT NULL,
