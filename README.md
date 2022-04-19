@@ -21,3 +21,4 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] PDF erstellen aus "Besuch hinzufügen"
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
 - [ ] Datepicker bei Besuch hinzufügen
+- [ ] Bei Besuch hinzufügen Datatables show all als Standard setzen
