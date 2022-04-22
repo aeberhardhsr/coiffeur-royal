@@ -9,7 +9,7 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] Bezeichnung Kostenberechnung von Pensum 100% auf Person 1 -> Analog 50% auf Person 2
 - [ ] Suchfeld bei "Besuch hinzufügen" Kunde durchsuchen
 - [x] Möglichkeiten von Notizen für Farbrezept
-- [ ] MwSt. 
+- [x] MwSt. 
 - [x] Login User: stefanie.werder, romy.weibel
 - [x] Datatables alle Datensätze zeigen als Standard
 - [x] berechneter Stundensatz in DB speichern
@@ -21,4 +21,4 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] PDF erstellen aus "Besuch hinzufügen"
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
 - [ ] Datepicker bei Besuch hinzufügen
-- [ ] Bei Besuch hinzufügen Datatables show all als Standard setzen
+- [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
