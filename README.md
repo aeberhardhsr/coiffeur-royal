@@ -22,3 +22,4 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
 - [ ] Datepicker bei Besuch hinzufügen
 - [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
+- [ ] Gmail Kalenderintegration
