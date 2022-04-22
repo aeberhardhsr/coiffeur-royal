@@ -546,7 +546,9 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+				"lengthMenu": [[-1, 10, 25, 50, 100],["All", 10, 25, 50, 100]]
+			});
         } );
     </script>
 	<script src="../assets/js/modals.js"></script>
