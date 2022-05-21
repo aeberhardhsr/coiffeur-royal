@@ -18,7 +18,7 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] berechnete Datenbankwerte als GENERATED ALWAYS AS (...) STORED; einpflegen
 - [x] Add Buttons neben Titel platzieren mit neuem Icon als Button
 - [ ] Modal für Besuch hinzufügen gestalten
-- [ ] PDF erstellen aus "Besuch hinzufügen"
+- [ ] PDF erstellen aus "Besuch hinzufügen" (https://www.youtube.com/watch?v=sr90M6Uzh14)
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
 - [ ] Datepicker bei Besuch hinzufügen
 - [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
