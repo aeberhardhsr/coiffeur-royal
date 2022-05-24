@@ -26,4 +26,4 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] Kunden können nur vollständig erfasst werden (Nur Name und Vorname sollten Pflicht sein)
 - [ ] Http Error 500 bei services_add.php
 - [x] Kostenrechnung: Parkplatzkosten von 50.- pro Monat / Anstatt Getränke -> Marketing
-- [ ] Kostenrechnung: Bruttolohn für Person 3
+- [x] Kostenrechnung: Bruttolohn für Person 3
