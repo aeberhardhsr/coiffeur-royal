@@ -25,5 +25,5 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] Bei products.php (Produkt hinzufügen) Faktor entfernen und keine Berechnungen anstellen. Dafür Marge ausweisen (Differenz Einkaufspreis zu Verkaufspreis)
 - [ ] Kunden können nur vollständig erfasst werden (Nur Name und Vorname sollten Pflicht sein)
 - [ ] Http Error 500 bei services_add.php
-- [ ] Kostenrechnung: Parkplatzkosten von 50.- pro Monat / Anstatt Getränke -> Marketing
+- [x] Kostenrechnung: Parkplatzkosten von 50.- pro Monat / Anstatt Getränke -> Marketing
 - [ ] Kostenrechnung: Bruttolohn für Person 3

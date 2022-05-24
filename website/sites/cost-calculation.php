@@ -175,13 +175,19 @@
                                             <input type="text" class="form-control" name="editAdditionalCostCalculation_room" id="editAdditionalCostCalculation_room" value="<?php echo number_format($row['cost_calculation_space'],2,'.',"'")?>">
                                           </div>
                                         </div>
+										<div class="row mb-3">
+                                          <label for="editAdditionalCostCalculation_parking" class="col-sm-2 col-form-label">Parkplatz</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="editAdditionalCostCalculation_parking" id="editAdditionalCostCalculation_parking" value="<?php echo $row['cost_calculation_parking']?>">
+                                          </div>
+                                        </div>
                                         <div class="row mb-3">
                                           <label for="editAdditionalCostCalculation_energy" class="col-sm-2 col-form-label">Strom</label>
                                           <div class="col-sm-10">
                                             <input type="text" class="form-control" name="editAdditionalCostCalculation_energy" id="editAdditionalCostCalculation_energy" value="<?php echo $row['cost_calculation_energy']?>">
                                           </div>
                                         </div>
-                                        <div class="row mb-3">
+										<div class="row mb-3">
                                             <label for="editAdditionalCostCalculation_water" class="col-sm-2 col-form-label">Wasser</label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control" name="editAdditionalCostCalculation_water" id="editAdditionalCostCalculation_water" value="<?php echo $row['cost_calculation_water']?>">

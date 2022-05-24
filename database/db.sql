@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS services (
 CREATE TABLE IF NOT EXISTS cost_calculation (
     cost_calculation_id INT AUTO_INCREMENT PRIMARY KEY,
     cost_calculation_space DECIMAL(10,2),
+    cost_calculation_parking DECIMAL(10,2),
     cost_calculation_energy DECIMAL(10,2),
     cost_calculation_water DECIMAL(10,2),
     cost_calculation_waste DECIMAL(10,2),
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS cost_calculation (
     cost_calculation_marketing DECIMAL(10,2),
     cost_calculation_towel DECIMAL(10,2),
     cost_calculation_accountant DECIMAL(10,2),
-    cost_calculation_additional_cost DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_space + cost_calculation_energy + cost_calculation_water + cost_calculation_waste + cost_calculation_office + cost_calculation_office_material + cost_calculation_marketing + cost_calculation_towel + cost_calculation_accountant) STORED,
+    cost_calculation_additional_cost DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_space + cost_calculation_parking + cost_calculation_energy + cost_calculation_water + cost_calculation_waste + cost_calculation_office + cost_calculation_office_material + cost_calculation_marketing + cost_calculation_towel + cost_calculation_accountant) STORED,
     cost_calculation_social_charges DECIMAL(10,2),
     cost_calculation_gross_wage_full DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) STORED,
     cost_calculation_hour_rate_full DECIMAL(10,2),
