@@ -74,9 +74,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="createProductModal_pricefactor" class="col-sm-4 col-form-label">Faktor</label>
+                            <label for="createProductModal_sales_price" class="col-sm-4 col-form-label">Verkaufspreis</label>
                             <div class="col-sm-8">
-                                <input type="text" name="createProductModal_pricefactor" class="form-control" id="createProductModal_pricefactor">
+                                <input type="text" name="createProductModal_sales_price" class="form-control" id="createProductModal_sales_price">
                             </div>
                         </div>
                     </div>
@@ -124,9 +124,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="editProductModal_pricefactor" class="col-sm-4 col-form-label">Faktor</label>
+                            <label for="editProductModal_sales_price" class="col-sm-4 col-form-label">Verkaufspreis</label>
                             <div class="col-sm-8">
-                                <input type="text" name="editProductModal_pricefactor" class="form-control" id="editProductModal_pricefactor">
+                                <input type="text" name="editProductModal_sales_price" class="form-control" id="editProductModal_sales_price">
                             </div>
                         </div>
                     </div>
@@ -174,9 +174,9 @@
                             </div>
                         </div>
 						<div class="form-group row mb-3">
-                            <label for="deleteProductModal_pricefactor" class="col-sm-4 col-form-label">Faktor</label>
+                            <label for="deleteProductModal_sales_price" class="col-sm-4 col-form-label">Verkaufspreis</label>
                             <div class="col-sm-8">
-                                <input type="text" name="deleteProductModal_pricefactor" class="form-control" id="deleteProductModal_pricefactor" readonly>
+                                <input type="text" name="deleteProductModal_sales_price" class="form-control" id="deleteProductModal_sales_price" readonly>
                             </div>
                         </div>
                     </div>
@@ -314,8 +314,8 @@
                                               <th class="text-uppercase text-secondary opacity-7">Name</th>
 											  <th class="text-uppercase text-secondary opacity-7">Menge</th>
                                               <th class="text-uppercase text-secondary opacity-7">Einkaufspreis</th>
-                                              <th class="text-uppercase text-secondary opacity-7">Faktor</th>
                                               <th class="text-uppercase text-secondary opacity-7">Verkaufspreis</th>
+                                              <th class="text-uppercase text-secondary opacity-7">Marge</th>
                                               <th class="text-uppercase text-secondary opacity-7">Edit</th>
                                             </tr>
                                           </thead>
@@ -333,8 +333,8 @@
 															echo "<td>" . $row['product_name'] . "</td>";
 															echo "<td>" . $row['product_amount'] . "</td>";
 															echo "<td>" . $row['product_purchase_price'] . "</td>";
-															echo "<td>" . $row['product_price_factor'] . "</td>";
-															echo "<td>" . $row['product_sales_price'] . "</td>"; //multiplication for sales price
+															echo "<td>" . $row['product_sales_price'] . "</td>";
+															echo "<td>" . $row['product_margin'] . "</td>"; //multiplication for sales price
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editproductbtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deleteproductbtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";

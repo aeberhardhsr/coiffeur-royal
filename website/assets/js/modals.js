@@ -87,7 +87,7 @@ $(document).ready(function () {
             $('#editProductModal_name').val(data[1]);
             $('#editProductModal_amount').val(data[2]);
             $('#editProductModal_purchaseprice').val(data[3]);
-            $('#editProductModal_pricefactor').val(data[4]);
+            $('#editProductModal_sales_price').val(data[4]);
     });
 });
 
@@ -110,7 +110,7 @@ $(document).ready(function () {
             $('#deleteProductModal_name').val(data[1]);
             $('#deleteProductModal_amount').val(data[2]);
             $('#deleteProductModal_purchaseprice').val(data[3]);
-            $('#deleteProductModal_pricefactor').val(data[4]);
+            $('#deleteProductModal_sales_price').val(data[4]);
     });
 });
 
