@@ -23,7 +23,7 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
 - [ ] Gmail Kalenderintegration
 - [x] Bei products.php (Produkt hinzufügen) Faktor entfernen und keine Berechnungen anstellen. Dafür Marge ausweisen (Differenz Einkaufspreis zu Verkaufspreis)
-- [ ] Kunden können nur vollständig erfasst werden (Nur Name und Vorname sollten Pflicht sein)
-- [ ] Http Error 500 bei services_add.php
+- [x] Kunden können nur vollständig erfasst werden (Nur Name und Vorname sollten Pflicht sein)
+- [x] Http Error 500 bei services_add.php
 - [x] Kostenrechnung: Parkplatzkosten von 50.- pro Monat / Anstatt Getränke -> Marketing
 - [x] Kostenrechnung: Bruttolohn für Person 3
