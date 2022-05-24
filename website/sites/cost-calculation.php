@@ -288,6 +288,18 @@
                                             <label for="editRatesCostCalculation_work_hours_half" class="form-label">Arbeitsstunden p. M.</label>
                                             <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_half" id="editRatesCostCalculation_work_hours_half" value="<?php echo $row_rates['cost_calculation_work_hours_half']?>">
                                         </div>
+										<div class="col-md-4">
+                                            <label for="editRatesCostCalculation_gross_wage_three" class="form-label">Bruttolohn Person 3</label>
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_gross_wage_three" id="editRatesCostCalculation_gross_wage_three" disabled value="<?php echo number_format($row_rates['cost_calculation_gross_wage_three'],2,'.',"'")?>">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="editRatesCostCalculation_hour_rate_three" class="form-label">Stundensatz</label>
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_hour_rate_three" id="editRatesCostCalculation_hour_rate_three" value="<?php echo $row_rates['cost_calculation_hour_rate_three']?>">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="editRatesCostCalculation_work_hours_three" class="form-label">Arbeitsstunden p. M.</label>
+                                            <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_three" id="editRatesCostCalculation_work_hours_three" value="<?php echo $row_rates['cost_calculation_work_hours_three']?>">
+                                        </div>
                                         <div class="col-12">
                                           <label for="editRatesCostCalculation_fte" class="form-label">Kosten 2 Coiffeuse p. M.</label>
                                           <input type="text" class="form-control" name="editRatesCostCalculation_fte" id="editRatesCostCalculation_fte" disabled value="<?php echo number_format($row_rates['cost_calculation_cost_fte'],2,'.',"'") ?>">

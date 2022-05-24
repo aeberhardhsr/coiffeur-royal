@@ -8,6 +8,8 @@ include 'db.php';
     $additionalratescost_work_hours_full    = $_POST['editRatesCostCalculation_work_hours_full'];
     $additionalratescost_hour_rate_half     = $_POST['editRatesCostCalculation_hour_rate_half'];
     $additionalratescost_work_hours_half    = $_POST['editRatesCostCalculation_work_hours_half'];
+    $additionalratescost_hour_rate_three     = $_POST['editRatesCostCalculation_hour_rate_three'];
+    $additionalratescost_work_hours_three    = $_POST['editRatesCostCalculation_work_hours_three'];
     $additionalratescost_hour_rate_calc     = $_POST['editRatesCostCalculation_hour_rate_calc'];
     
 
@@ -16,7 +18,9 @@ include 'db.php';
                                             cost_calculation_hour_rate_full='$additionalratescost_hour_rate_full',
                                             cost_calculation_work_hours_full='$additionalratescost_work_hours_full',
                                             cost_calculation_hour_rate_half='$additionalratescost_hour_rate_half',
-                                            cost_calculation_work_hours_half='$additionalratescost_work_hours_half'
+                                            cost_calculation_work_hours_half='$additionalratescost_work_hours_half',
+                                            cost_calculation_hour_rate_three='$additionalratescost_hour_rate_three',
+                                            cost_calculation_work_hours_three='$additionalratescost_work_hours_three'
                                             WHERE cost_calculation_id='$additionalratescost_id'";
     $query_run = mysqli_query($db_conn, $query);
 

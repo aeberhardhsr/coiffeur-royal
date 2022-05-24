@@ -79,8 +79,11 @@ CREATE TABLE IF NOT EXISTS cost_calculation (
     cost_calculation_gross_wage_half DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) STORED,
     cost_calculation_hour_rate_half DECIMAL(10,2),
     cost_calculation_work_hours_half DECIMAL(10,2),
-    cost_calculation_cost_fte DECIMAL(10,2) GENERATED ALWAYS AS ((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + cost_calculation_additional_cost) STORED,
-    cost_calculation_hour_rate_calculated DECIMAL(10,2) GENERATED ALWAYS AS (((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + cost_calculation_additional_cost) / (cost_calculation_work_hours_full + cost_calculation_work_hours_half)) STORED
+    cost_calculation_gross_wage_three DECIMAL(10,2) GENERATED ALWAYS AS (cost_calculation_hour_rate_three * cost_calculation_work_hours_three * cost_calculation_social_charges) STORED,
+    cost_calculation_hour_rate_three DECIMAL(10,2),
+    cost_calculation_work_hours_three DECIMAL(10,2),
+    cost_calculation_cost_fte DECIMAL(10,2) GENERATED ALWAYS AS ((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + (cost_calculation_hour_rate_three * cost_calculation_work_hours_three * cost_calculation_social_charges) + cost_calculation_additional_cost) STORED,
+    cost_calculation_hour_rate_calculated DECIMAL(10,2) GENERATED ALWAYS AS (((cost_calculation_hour_rate_full * cost_calculation_work_hours_full * cost_calculation_social_charges) + (cost_calculation_hour_rate_half * cost_calculation_work_hours_half * cost_calculation_social_charges) + (cost_calculation_hour_rate_three * cost_calculation_work_hours_three * cost_calculation_social_charges) + cost_calculation_additional_cost) / (cost_calculation_work_hours_full + cost_calculation_work_hours_half + cost_calculation_work_hours_three)) STORED
     );
 
 CREATE TABLE IF NOT EXISTS customer_visit_info (
