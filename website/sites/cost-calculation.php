@@ -206,9 +206,9 @@
                                             </div>
                                           </div>
                                           <div class="row mb-3">
-                                            <label for="editAdditionalCostCalculation_drinks" class="col-sm-2 col-form-label">Getränke</label>
+                                            <label for="editAdditionalCostCalculation_marketing" class="col-sm-2 col-form-label">Marketing</label>
                                             <div class="col-sm-10">
-                                              <input type="text" class="form-control" name="editAdditionalCostCalculation_drinks" id="editAdditionalCostCalculation_drinks" value="<?php echo $row['cost_calculation_drinks']?>">
+                                              <input type="text" class="form-control" name="editAdditionalCostCalculation_marketing" id="editAdditionalCostCalculation_marketing" value="<?php echo $row['cost_calculation_marketing']?>">
                                             </div>
                                           </div>
                                           <div class="row mb-3">

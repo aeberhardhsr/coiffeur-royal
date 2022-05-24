@@ -9,7 +9,7 @@ include 'db.php';
     $additionalcost_waste           = $_POST['editAdditionalCostCalculation_waste'];
     $additionalcost_office          = $_POST['editAdditionalCostCalculation_office'];
     $additionalcost_office_material = $_POST['editAdditionalCostCalculation_officematerial'];
-    $additionalcost_drinks          = $_POST['editAdditionalCostCalculation_drinks'];
+    $additionalcost_marketing          = $_POST['editAdditionalCostCalculation_marketing'];
     $additionalcost_towel           = $_POST['editAdditionalCostCalculation_towel'];
     $additionalcost_accountant      = $_POST['editAdditionalCostCalculation_accountant'];
 
@@ -20,7 +20,7 @@ include 'db.php';
                                             cost_calculation_waste='$additionalcost_waste', 
                                             cost_calculation_office='$additionalcost_office', 
                                             cost_calculation_office_material='$additionalcost_office_material',
-                                            cost_calculation_drinks='$additionalcost_drinks',
+                                            cost_calculation_marketing='$additionalcost_marketing',
                                             cost_calculation_towel='$additionalcost_towel',
                                             cost_calculation_accountant='$additionalcost_accountant'
                                             WHERE cost_calculation_id='$additionalcost_id'";
