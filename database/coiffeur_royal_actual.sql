@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 17. Mai 2022 um 18:53
+-- Erstellungszeit: 25. Mai 2022 um 14:52
 -- Server-Version: 10.5.15-MariaDB-0+deb11u1
 -- PHP-Version: 8.0.1
 
@@ -30,15 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `cost_calculation` (
   `cost_calculation_id` int(11) NOT NULL,
   `cost_calculation_space` decimal(10,2) DEFAULT NULL,
+  `cost_calculation_parking` decimal(10,2) DEFAULT NULL,
   `cost_calculation_energy` decimal(10,2) DEFAULT NULL,
   `cost_calculation_water` decimal(10,2) DEFAULT NULL,
   `cost_calculation_waste` decimal(10,2) DEFAULT NULL,
   `cost_calculation_office` decimal(10,2) DEFAULT NULL,
   `cost_calculation_office_material` decimal(10,2) DEFAULT NULL,
-  `cost_calculation_drinks` decimal(10,2) DEFAULT NULL,
+  `cost_calculation_marketing` decimal(10,2) DEFAULT NULL,
   `cost_calculation_towel` decimal(10,2) DEFAULT NULL,
   `cost_calculation_accountant` decimal(10,2) DEFAULT NULL,
-  `cost_calculation_additional_cost` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_space` + `cost_calculation_energy` + `cost_calculation_water` + `cost_calculation_waste` + `cost_calculation_office` + `cost_calculation_office_material` + `cost_calculation_drinks` + `cost_calculation_towel` + `cost_calculation_accountant`) STORED,
+  `cost_calculation_additional_cost` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_space` + `cost_calculation_parking` + `cost_calculation_energy` + `cost_calculation_water` + `cost_calculation_waste` + `cost_calculation_office` + `cost_calculation_office_material` + `cost_calculation_marketing` + `cost_calculation_towel` + `cost_calculation_accountant`) STORED,
   `cost_calculation_social_charges` decimal(10,2) DEFAULT NULL,
   `cost_calculation_gross_wage_full` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_hour_rate_full` * `cost_calculation_work_hours_full` * `cost_calculation_social_charges`) STORED,
   `cost_calculation_hour_rate_full` decimal(10,2) DEFAULT NULL,
@@ -46,16 +47,19 @@ CREATE TABLE `cost_calculation` (
   `cost_calculation_gross_wage_half` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_hour_rate_half` * `cost_calculation_work_hours_half` * `cost_calculation_social_charges`) STORED,
   `cost_calculation_hour_rate_half` decimal(10,2) DEFAULT NULL,
   `cost_calculation_work_hours_half` decimal(10,2) DEFAULT NULL,
-  `cost_calculation_cost_fte` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_hour_rate_full` * `cost_calculation_work_hours_full` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_half` * `cost_calculation_work_hours_half` * `cost_calculation_social_charges` + `cost_calculation_additional_cost`) STORED,
-  `cost_calculation_hour_rate_calculated` decimal(10,2) GENERATED ALWAYS AS ((`cost_calculation_hour_rate_full` * `cost_calculation_work_hours_full` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_half` * `cost_calculation_work_hours_half` * `cost_calculation_social_charges` + `cost_calculation_additional_cost`) / (`cost_calculation_work_hours_full` + `cost_calculation_work_hours_half`)) STORED
+  `cost_calculation_gross_wage_three` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_hour_rate_three` * `cost_calculation_work_hours_three` * `cost_calculation_social_charges`) STORED,
+  `cost_calculation_hour_rate_three` decimal(10,2) DEFAULT NULL,
+  `cost_calculation_work_hours_three` decimal(10,2) DEFAULT NULL,
+  `cost_calculation_cost_fte` decimal(10,2) GENERATED ALWAYS AS (`cost_calculation_hour_rate_full` * `cost_calculation_work_hours_full` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_half` * `cost_calculation_work_hours_half` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_three` * `cost_calculation_work_hours_three` * `cost_calculation_social_charges` + `cost_calculation_additional_cost`) STORED,
+  `cost_calculation_hour_rate_calculated` decimal(10,2) GENERATED ALWAYS AS ((`cost_calculation_hour_rate_full` * `cost_calculation_work_hours_full` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_half` * `cost_calculation_work_hours_half` * `cost_calculation_social_charges` + `cost_calculation_hour_rate_three` * `cost_calculation_work_hours_three` * `cost_calculation_social_charges` + `cost_calculation_additional_cost`) / (`cost_calculation_work_hours_full` + `cost_calculation_work_hours_half` + `cost_calculation_work_hours_three`)) STORED
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `cost_calculation`
 --
 
-INSERT INTO `cost_calculation` (`cost_calculation_id`, `cost_calculation_space`, `cost_calculation_energy`, `cost_calculation_water`, `cost_calculation_waste`, `cost_calculation_office`, `cost_calculation_office_material`, `cost_calculation_drinks`, `cost_calculation_towel`, `cost_calculation_accountant`, `cost_calculation_social_charges`, `cost_calculation_hour_rate_full`, `cost_calculation_work_hours_full`, `cost_calculation_hour_rate_half`, `cost_calculation_work_hours_half`) VALUES
-(1, '800.00', '50.00', '50.00', '0.00', '160.00', '41.70', '200.00', '50.00', '66.70', '1.25', '35.00', '100.00', '30.00', '50.00');
+INSERT INTO `cost_calculation` (`cost_calculation_id`, `cost_calculation_space`, `cost_calculation_parking`, `cost_calculation_energy`, `cost_calculation_water`, `cost_calculation_waste`, `cost_calculation_office`, `cost_calculation_office_material`, `cost_calculation_marketing`, `cost_calculation_towel`, `cost_calculation_accountant`, `cost_calculation_social_charges`, `cost_calculation_hour_rate_full`, `cost_calculation_work_hours_full`, `cost_calculation_hour_rate_half`, `cost_calculation_work_hours_half`, `cost_calculation_hour_rate_three`, `cost_calculation_work_hours_three`) VALUES
+(1, '0.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -135,7 +139,14 @@ INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_vorname`, `cus
 (54, 'Keusch', 'Martina', 'Muri', 5630, '', '0796979137', 'mar-tina@bluewin.ch'),
 (55, 'Birrer', 'Maria', 'Urdorf', 8902, '', '0796877868', 'mariabirrer@hotmail.com'),
 (56, 'Isler', 'Benjamin', 'Bünzen', 5624, '', '0796853123', 'pal45stek@hispeed.ch'),
-(57, 'Di Chiara', 'Renzo', 'Seon', 5703, '', '0792236517', 'renzo.dichiara@regapack.ch');
+(57, 'Di Chiara', 'Renzo', 'Seon', 5703, '', '0792236517', 'renzo.dichiara@regapack.ch'),
+(59, 'Lebeda', 'Antonia', 'Münchwilen', 9542, '', '0788685335', 'antonia.lebeda@bluemail.ch'),
+(60, 'Kluser', 'Natasha', 'Muri', 5630, '', '0788815829', 'natasha.kluser@outlook.com'),
+(61, 'Meier', 'Alexander', 'Boswil', 5623, '', '0798539599', ''),
+(62, 'Christen', 'Nicole', 'Mühlau', 5642, '', '0789505592', ''),
+(63, 'Brun', 'Celine', 'Aristau', 5628, '', '0795500063', ''),
+(64, 'Werder', 'Tobias', 'Boswil', 5623, '', '0798375527', ''),
+(65, 'Werder', 'Sebastian', 'Boswil', 5623, '', '0798392334', '');
 
 -- --------------------------------------------------------
 
@@ -160,39 +171,39 @@ CREATE TABLE `products` (
   `product_name` varchar(50) NOT NULL,
   `product_amount` varchar(30) DEFAULT NULL,
   `product_purchase_price` decimal(6,2) DEFAULT NULL,
-  `product_price_factor` decimal(6,2) DEFAULT NULL,
-  `product_sales_price` decimal(10,2) GENERATED ALWAYS AS (`product_purchase_price` * `product_price_factor`) STORED
+  `product_margin` decimal(6,2) GENERATED ALWAYS AS (`product_sales_price` - `product_purchase_price`) STORED,
+  `product_sales_price` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_amount`, `product_purchase_price`, `product_price_factor`) VALUES
-(1, 'Metal DX Shampoo', '300', '18.00', '1.50'),
-(2, 'Metal DX Shampoo', '1500', '29.00', '1.50'),
-(3, 'Metal DX Mask', '250', '20.00', '1.50'),
-(4, 'Metal DX Mask', '500', '25.00', '1.50'),
-(5, 'Silver Shampoo Cotril', '300', '15.00', '1.50'),
-(6, 'Volume Roots Spray', '200', '22.95', '1.50'),
-(7, 'Regenerationsspray', '200', '23.80', '1.50'),
-(8, 'Helmet Gel', '100', '22.00', '1.50'),
-(9, 'Clay Matt Paste', '100', '22.00', '1.50'),
-(10, 'Pomade Water Wax', '100', '22.00', '1.50'),
-(11, 'Gale Haarspray', '300', '16.00', '1.50'),
-(12, 'Gel Mousse ', '250', '16.00', '1.50'),
-(13, 'Extra Volume Mousse', '250', '17.00', '1.50'),
-(14, 'Volume No Gas Haarspray', '250', '22.00', '1.50'),
-(15, 'Velvet', '150', '18.00', '1.50'),
-(16, 'Top 10 in 1', '150', '20.00', '1.50'),
-(17, 'Goodbye Yellow/Orange Shampoo', '1000', '23.00', '1.50'),
-(18, 'Goodbye Yellow/Orange Shampoo', '300', '8.45', '1.50'),
-(19, 'Bio Argan Oil', '125', '20.00', '1.50'),
-(20, 'Panaché Spray', '250', '16.00', '1.50'),
-(21, 'Morning After Dust', '200', '18.00', '1.50'),
-(22, 'Hair Touch Up Farbspray', '75', '13.50', '1.50'),
-(23, 'Lagoom Gel Goldwell', '200', '18.00', '1.50'),
-(24, '9P Goldwell Tönungsschaum', '100', '8.00', '1.50');
+INSERT INTO `products` (`product_id`, `product_name`, `product_amount`, `product_purchase_price`, `product_sales_price`) VALUES
+(1, 'Metal DX Shampoo', '300', '18.00', '22.00'),
+(2, 'Metal DX Shampoo', '1500', '29.00', NULL),
+(3, 'Metal DX Mask', '250', '20.00', NULL),
+(4, 'Metal DX Mask', '500', '25.00', NULL),
+(5, 'Silver Shampoo Cotril', '300', '15.00', NULL),
+(6, 'Volume Roots Spray', '200', '22.95', NULL),
+(7, 'Regenerationsspray', '200', '23.80', NULL),
+(8, 'Helmet Gel', '100', '22.00', NULL),
+(9, 'Clay Matt Paste', '100', '22.00', NULL),
+(10, 'Pomade Water Wax', '100', '22.00', NULL),
+(11, 'Gale Haarspray', '300', '16.00', NULL),
+(12, 'Gel Mousse ', '250', '16.00', NULL),
+(13, 'Extra Volume Mousse', '250', '17.00', NULL),
+(14, 'Volume No Gas Haarspray', '250', '22.00', NULL),
+(15, 'Velvet', '150', '18.00', NULL),
+(16, 'Top 10 in 1', '150', '20.00', NULL),
+(17, 'Goodbye Yellow/Orange Shampoo', '1000', '23.00', NULL),
+(18, 'Goodbye Yellow/Orange Shampoo', '300', '8.45', NULL),
+(19, 'Bio Argan Oil', '125', '20.00', NULL),
+(20, 'Panaché Spray', '250', '16.00', NULL),
+(21, 'Morning After Dust', '200', '18.00', NULL),
+(22, 'Hair Touch Up Farbspray', '75', '13.50', NULL),
+(23, 'Lagoom Gel Goldwell', '200', '18.00', NULL),
+(24, '9P Goldwell Tönungsschaum', '100', '8.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,7 +227,7 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`services_id`, `services_name`, `services_service_group`, `services_duration`, `services_factor`, `services_consumption`, `services_price_kg_liter`, `services_sales_price`) VALUES
-(1, 'Frisurenbesprechung', 'Auftragspauschale', 3, '1.30', NULL, NULL, '2.33');
+(1, 'test', 'Auftragspauschale', 2, '1.30', '120.00', '12.00', '187.20');
 
 -- --------------------------------------------------------
 
@@ -276,13 +287,6 @@ CREATE TABLE `visits` (
   `visits_notes` varchar(1000) DEFAULT NULL,
   `visits_assignee` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `visits`
---
-
-INSERT INTO `visits` (`visits_id`, `visits_datetime`, `visits_customer`, `visits_notes`, `visits_assignee`) VALUES
-(1, '2022-04-22', 'Eberhard Andreas', '200ml blaue Haarfarbe gebraucht', 'Stefanie Werder');
 
 -- --------------------------------------------------------
 
@@ -371,7 +375,7 @@ ALTER TABLE `cost_calculation`
 -- AUTO_INCREMENT für Tabelle `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT für Tabelle `customer_visit_info`
@@ -407,7 +411,7 @@ ALTER TABLE `staff_user`
 -- AUTO_INCREMENT für Tabelle `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `visits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `visits_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `visits_purchase`
