@@ -301,7 +301,7 @@
                                             <input type="text" class="form-control" name="editRatesCostCalculation_work_hours_three" id="editRatesCostCalculation_work_hours_three" value="<?php echo $row_rates['cost_calculation_work_hours_three']?>">
                                         </div>
                                         <div class="col-12">
-                                          <label for="editRatesCostCalculation_fte" class="form-label">Kosten 2 Coiffeuse p. M.</label>
+                                          <label for="editRatesCostCalculation_fte" class="form-label">Personalkosten p. M.</label>
                                           <input type="text" class="form-control" name="editRatesCostCalculation_fte" id="editRatesCostCalculation_fte" disabled value="<?php echo number_format($row_rates['cost_calculation_cost_fte'],2,'.',"'") ?>">
                                         </div>
                                         <div class="col-12 mb-3">
