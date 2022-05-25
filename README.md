@@ -21,7 +21,7 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
 - [ ] Datepicker bei Besuch hinzufügen
 - [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
-- [ ] Gmail Kalenderintegration
+- [x] Gmail Kalenderintegration
 - [x] Bei products.php (Produkt hinzufügen) Faktor entfernen und keine Berechnungen anstellen. Dafür Marge ausweisen (Differenz Einkaufspreis zu Verkaufspreis)
 - [x] Kunden können nur vollständig erfasst werden (Nur Name und Vorname sollten Pflicht sein)
 - [x] Http Error 500 bei services_add.php
