@@ -430,7 +430,7 @@
 															<div class="form-group row mb-3">
 																<label for="deleteVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
 																<div class="col-sm-9">
-																	<input type="date" name="deleteVisitModal_date" class="form-control" id="deleteVisitModal_date" readonly>
+																	<input type="text" name="deleteVisitModal_date" class="form-control" id="deleteVisitModal_date" readonly>
 																</div>
 															</div>
 															<div class="form-group row mb-3">
@@ -501,8 +501,8 @@
 															echo "<td style='display: none;'>" . $row['visits_notes'] . "</td>";
 															echo "<td class='text-right'>";
 																echo "<button type='button' class='btn mr-1 editvisitbtn'><i class='align-middle' data-feather='edit' style='width: 25px; height: 25px;'></i></button>";
-																echo "<button type='button' class='btn notevisitebtn'><i class='align-middle' data-feather='message-square' style='width: 25px; height: 25px;'></i></button>";
-																echo "<button type='button' class='btn showofferbtn'><i class='align-middle' data-feather='book-open' style='width: 25px; height: 25px;'></i></button>";
+																echo "<button type='button' class='btn notevisitebtn'><i class='align-middle' data-feather='message-circle' style='width: 25px; height: 25px;'></i></button>";
+																echo "<button type='button' class='btn showofferbtn'><i class='align-middle' data-feather='shopping-cart' style='width: 25px; height: 25px;'></i></button>";
 																echo "<button type='button' class='btn mr-1 deletevisitbtn'><i class='align-middle' data-feather='trash' style='width: 25px; height: 25px;'></i></button>";
 															echo "</td>";
 													}
