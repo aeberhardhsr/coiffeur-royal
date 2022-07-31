@@ -188,10 +188,10 @@
 																	?>
 															</div>
 														</div>
-														<div style="display: none;" class="form-group row mb-3">
+														<div class="form-group row mb-3">
 															<label for="createVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
 															<div class="col-sm-9">
-																<input type="text" name="createVisitModal_date" class="form-control" id="createVisitModal_date">
+																<input type="date" name="createVisitModal_date" class="form-control" id="createVisitModal_date">
 															</div>
 														</div>
 														<div style="display: none;" class="form-group row mb-3">
@@ -309,7 +309,7 @@
 														<div class="form-group row mb-3">
 															<label for="editVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
 															<div class="col-sm-9">
-																<input type="text" name="editVisitModal_date" class="form-control" id="editVisitModal_date">
+																<input type="date" name="editVisitModal_date" class="form-control" id="editVisitModal_date">
 															</div>
 														</div>
 														
@@ -430,7 +430,7 @@
 															<div class="form-group row mb-3">
 																<label for="deleteVisitModal_date" class="col-sm-3 col-form-label">Datum</label>
 																<div class="col-sm-9">
-																	<input type="text" name="deleteVisitModal_date" class="form-control" id="deleteVisitModal_date" readonly>
+																	<input type="date" name="deleteVisitModal_date" class="form-control" id="deleteVisitModal_date" readonly>
 																</div>
 															</div>
 															<div class="form-group row mb-3">
