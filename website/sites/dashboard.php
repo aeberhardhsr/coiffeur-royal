@@ -17,6 +17,11 @@
     }
 ?>
 
+<?php
+	$lastMonth = Date("F", strtotime("first day of previous month"));
+	$beforelastMonth = Date("F", strtotime("-2 months"));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,114 +152,112 @@
 					<h1 class="h3 mb-3"><strong>Analysen</strong></h1>
 
 					<div class="row">
-						<div class="col-xl-6 col-xxl-5 d-flex">
-							<div class="w-100">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
+						
+						<div class="col-xl-4 col-xxl-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Umsatz Produkte <?php echo $lastMonth ?></h5>
 										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
-													</div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
+										<div class="col-auto">
+											<div class="stat text-primary">
+												<i class="align-middle" data-feather="dollar-sign"></i>
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Earnings</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="dollar-sign"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Orders</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="shopping-cart"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">64</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
+									<h1 class="mt-1 mb-3">14.212</h1>
+									<div class="mb-0">
+										<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-xl-6 col-xxl-7">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
+						<div class="col-xl-4 col-xxl-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Umsatz Dienstleistungen <?php echo $lastMonth ?></h5>
+										</div>
 
-									<h5 class="card-title mb-0">Monatsumsätze</h5>
-								</div>
-								<div class="card-body py-3">
-									<div class="chart chart-sm">
-										<canvas id="chartjs-dashboard-line"></canvas>
+										<div class="col-auto">
+											<div class="stat text-primary">
+												<i class="align-middle" data-feather="dollar-sign"></i>
+											</div>
+										</div>
+									</div>
+									<h1 class="mt-1 mb-3">14.212</h1>
+									<div class="mb-0">
+										<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
 									</div>
 								</div>
 							</div>
 						</div>
+
+						<div class="col-xl-4 col-xxl-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Kundenbesuche <?php echo $lastMonth ?></h5>
+										</div>
+
+										<div class="col-auto">
+											<div class="stat text-primary">
+												<i class="align-middle" data-feather="users"></i>
+											</div>
+										</div>
+									</div>
+									<?php
+										include 'db.php';
+										// get the number of visitors from last month
+										$sql_countVisitorslastMonth = "SELECT COUNT(*) as visitorlastmonth FROM visits WHERE MONTH(visits_datetime) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) AND YEAR(visits_datetime) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)";
+										$result_countVisitorslastMonth = mysqli_query($db_conn, $sql_countVisitorslastMonth);
+										$data_countVisitorslastMonth = mysqli_fetch_assoc($result_countVisitorslastMonth);
+										
+										// get the number of visitors from the month before last month 
+										$sql_countVisitorsbeforelastMonth = "SELECT COUNT(*) as visitorbeforelastmonth FROM visits WHERE MONTH(visits_datetime) = MONTH(CURRENT_DATE() - INTERVAL 2 MONTH) AND YEAR(visits_datetime) = YEAR(CURRENT_DATE() - INTERVAL 2 MONTH)";
+										$result_countVisitorsbeforelastMonth = mysqli_query($db_conn, $sql_countVisitorsbeforelastMonth);
+										$data_countVisitorsbeforelastMonth = mysqli_fetch_assoc($result_countVisitorsbeforelastMonth);
+
+										// get the increase / decrease in percentage of visitors from last month to the month before the last month
+										$percentage_inc_dec_visitors = round((1 - ($data_countVisitorsbeforelastMonth['visitorbeforelastmonth'] / $data_countVisitorslastMonth['visitorlastmonth'])) * 100, 2); 
+
+									?>
+									<h1 class="mt-1 mb-3"><?php echo $data_countVisitorslastMonth['visitorlastmonth'] ?></h1>
+									<div class="mb-0">
+
+										<?php
+
+										if ($percentage_inc_dec_visitors > 0)
+										{
+											echo "<span class='text-success'> <i class='mdi mdi-arrow-bottom-right'></i>" . $percentage_inc_dec_visitors . "% </span>";
+										}
+										elseif ($percentage_inc_dec_visitors == 0)
+										{
+											echo "<span class='text-warning'> <i class='mdi mdi-arrow-bottom-right'></i>" . $percentage_inc_dec_visitors . "% </span>";
+										}
+										elseif ($percentage_inc_dec_visitors < 0)
+										{
+											echo "<span class='text-danger'> <i class='mdi mdi-arrow-bottom-right'></i>" . $percentage_inc_dec_visitors . "% </span>";
+										}
+										?>
+
+										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 
 					<div class="row">
-						<div class="col-12 col-lg-8 col-xxl-9 d-flex">
+						<div class="col-12 col-lg-12 col-xxl-12 d-flex">
 							<div class="card flex-fill">
 								<div class="card-header">
 
@@ -295,19 +298,6 @@
 										?>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="col-12 col-lg-4 col-xxl-3 d-flex">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-
-									<h5 class="card-title mb-0">Monatliche Kunden</h5>
-								</div>
-								<div class="card-body d-flex w-100">
-									<div class="align-self-center chart chart-lg">
-										<canvas id="chartjs-dashboard-bar"></canvas>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
