@@ -6,7 +6,7 @@ if(isset($_POST['deletevisitbtn']))
     $visit_id      = $_POST['deleteVisitNoteModal_id'];
     $visit_date    = $_POST['deleteVisitModal_date'];
     
-    $query = "DELETE FROM visits WHERE visits_id='$visit_id' AND visits_datetime='$visit_date'";
+    $query = "DELETE FROM visits WHERE visits_id='$visit_id'";
     $query_run = mysqli_query($db_conn, $query);
 
     if($query_run)
