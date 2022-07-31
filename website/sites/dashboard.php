@@ -170,7 +170,7 @@
 									<h1 class="mt-1 mb-3">14.212</h1>
 									<div class="mb-0">
 										<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
+										<span class="text-muted">Im Vergleich zu <?php echo $beforelastMonth ?></span>
 									</div>
 								</div>
 							</div>
@@ -193,7 +193,7 @@
 									<h1 class="mt-1 mb-3">14.212</h1>
 									<div class="mb-0">
 										<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
+										<span class="text-muted">Im Vergleich zu <?php echo $beforelastMonth ?></span>
 									</div>
 								</div>
 							</div>
@@ -248,7 +248,7 @@
 										}
 										?>
 
-										<span class="text-muted">Seit <?php echo $beforelastMonth ?></span>
+										<span class="text-muted">Im Vergleich zu <?php echo $beforelastMonth ?></span>
 									</div>
 								</div>
 							</div>
