@@ -28,3 +28,5 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [x] Kostenrechnung: Parkplatzkosten von 50.- pro Monat / Anstatt Getränke -> Marketing
 - [x] Kostenrechnung: Bruttolohn für Person 3
 - [ ] Mitteilungs Center mit Benachrichtigungen -> Kunden die vor 3 Wochen Haare geschnitten haben
+- [ ] visits.php -> anderes icon für Buch (Rechnungsicon)
+- [ ] Grafiken für Dashboard -> Umsatz Produkte (inkl. Unterseite für Umsatz pro Produkt), Umsatz Dienstleistungen, Anzahl Kundenbesuche letzter Monat im Vergleich zu vorletzter Monat
