@@ -19,7 +19,7 @@ passwort für user-login: CoiffeurRoyalMuri2022!
 - [ ] Modal für Besuch hinzufügen gestalten / Suchfeld bei "Besuch hinzufügen" Kunde durchsuchen -> Autofill Option
 - [ ] PDF erstellen aus "Besuch hinzufügen" (https://www.youtube.com/watch?v=sr90M6Uzh14)
 - [ ] Datenbankfelder in allen Tabellen für spätere Statistiken einfügen (Besuch erstellt von, Datumsfeld erstellt am usw.)
-- [ ] Datepicker bei Besuch hinzufügen
+- [x] Datepicker bei Besuch hinzufügen
 - [x] Bei Besuch hinzufügen Datatables show all als Standard setzen
 - [x] Gmail Kalenderintegration
 - [x] Bei products.php (Produkt hinzufügen) Faktor entfernen und keine Berechnungen anstellen. Dafür Marge ausweisen (Differenz Einkaufspreis zu Verkaufspreis)
