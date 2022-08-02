@@ -137,7 +137,9 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profil</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hife</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="bell"></i> News</a>	
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Hilfe</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout.php">Abmelden</a>
 							</div>
@@ -226,7 +228,16 @@
 										$data_countVisitorsbeforelastMonth = mysqli_fetch_assoc($result_countVisitorsbeforelastMonth);
 
 										// get the increase / decrease in percentage of visitors from last month to the month before the last month
-										$percentage_inc_dec_visitors = round((1 - ($data_countVisitorsbeforelastMonth['visitorbeforelastmonth'] / $data_countVisitorslastMonth['visitorlastmonth'])) * 100, 2); 
+										if ($data_countVisitorslastMonth['visitorlastmonth'] == 0.0)
+										{
+											$percentage_inc_dec_visitors = "-";
+										}
+										else
+										{
+											$percentage_inc_dec_visitors = round((1 - ($data_countVisitorsbeforelastMonth['visitorbeforelastmonth'] / $data_countVisitorslastMonth['visitorlastmonth'])) * 100, 2);
+										}
+										
+										
 
 									?>
 									<h1 class="mt-1 mb-3"><?php echo $data_countVisitorslastMonth['visitorlastmonth'] ?></h1>
