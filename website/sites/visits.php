@@ -291,7 +291,7 @@
 																		}
 																		else 
 																		{
-																			echo "Noch keine Dienstleistungsgruppen erfasst";
+																			echo "Noch keine Produkte erfasst";
 																		}
 																		echo "</div>";
 																		echo "</div>";
