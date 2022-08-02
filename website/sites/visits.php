@@ -252,9 +252,57 @@
 																	echo "Noch keine Dienstleistungsgruppen erfasst";
 																}
 															?>
-															
-															
 														</div>
+														
+														<hr>
+
+														<div class="accordion accordion-flush" id="accordionFlushProducts">
+															<div class='accordion-item'>
+																<h2 class='accordion-header' id='flush-heading99'>
+																	<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse99' aria-expanded='false' aria-controls='flush-collapse99'>Produkte</button>
+																</h2>
+																<div id='flush-collapse99' class='accordion-collapse collapse' aria-labelledby='flush-heading99' data-bs-parent='#accordionFlushProducts'>
+																<div class='accordion-body'>
+
+																<?php
+																	include 'db.php';
+																	$sql_products = "SELECT * FROM products";
+																	$result_products = mysqli_query($db_conn, $sql_products);
+																		if (mysqli_num_rows($result_products) > 0)
+																		{
+																			while($row_res_prod = mysqli_fetch_assoc($result_products))
+																			{
+																				echo "<div class='row'>";
+																				echo 	"<div class='col-sm-6'><p class='float-start'>";
+																				echo 		"<label class='form-check'>";
+																				echo			"<input class='form-check-input' type='checkbox' name='addVisitModal_".$row_res_prod['product_name']."' value='". $row_res_prod['product_name'] . ";" . $row_res_prod['product_amount'] . ";" . $row_res_prod['product_sales_price']."'>";
+																				echo			"<span class='form-check-label'>";
+																				echo			$row_res_prod['product_name'] . "   |   " . $row_res_prod['product_amount'] . "ml";
+																				echo			"</span>";
+																				echo			"<span class='float-end'>";
+																				echo			"</span>";
+																				echo 		"</label>";
+																				echo 	"</p></div>";
+																				echo 	"<div class='col-sm-6'><p class='float-end'>";
+																				echo 		$row_res_prod['product_sales_price'];
+																				echo 	"</p></div>";
+																				echo "</div>";
+																			}
+																		}
+																		else 
+																		{
+																			echo "Noch keine Dienstleistungsgruppen erfasst";
+																		}
+																		echo "</div>";
+																		echo "</div>";
+																		echo "</div>";
+																		
+																		
+																?>
+
+														</div>
+
+
 													</div>
 												
 													<div class="modal-footer">
